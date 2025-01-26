@@ -8,13 +8,15 @@ import { CommentsComponent } from './comments/comments.component';
 import { SettlementsComponent } from './settlements/settlements.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { provideHttpClient } from '@angular/common/http';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     CommentsComponent,
-    SettlementsComponent
+    SettlementsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
