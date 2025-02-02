@@ -30,7 +30,7 @@ export class MapComponent implements OnInit {
     const maxLat = 49; 
     const svgWidth = 900; 
     const svgHeight = 850; 
-    const offsetX = -20;    
+    const offsetX = 0;    
     const offsetY = -30;     
     this.datas.forEach((helyseg: any) => {
       const helysegNev = helyseg['Helységnév'];
