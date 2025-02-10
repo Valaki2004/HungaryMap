@@ -27,18 +27,18 @@ export class MapComponent implements OnInit  {
         console.log(res)
         this.datas=res}})
   }
-  showTooltip(event: MouseEvent, text: string) {
+  showText(event: MouseEvent, text: string) {
     console.log("Tooltip megjelenik:", text);
     this.tooltipText = text;
     this.tooltipVisible = true;
-    this.moveTooltip(event);
+    this.moveText(event);
   }
-  moveTooltip(event: MouseEvent) {
+  moveText(event: MouseEvent) {
     console.log("Egér pozíció:", event.clientX, event.clientY);
     this.tooltipX = event.clientX -520;  
     this.tooltipY = event.clientY -100;  
   }
-  hideTooltip() {
+  hideText() {
     console.log("Tooltip elrejtése");
     this.tooltipVisible = false;
   }
