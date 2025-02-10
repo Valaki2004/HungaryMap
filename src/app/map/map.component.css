@@ -1,5 +1,6 @@
 .tartalom {
     text-align: center;
+    position: relative;
 }
 .kepkozep {
     display: block;
@@ -22,7 +23,7 @@ svg path{
     cursor:pointer
 }
 svg path:hover{
-    fill:green
+    fill:lightgreen
 }
 circle {
     transition: transform 0.2s ease;
@@ -30,5 +31,8 @@ circle {
   circle:hover {
     transform: scale(1.5);
   }
-
-
+.mousehover{
+    position: absolute;
+    color: black;
+    font-size: large;
+}

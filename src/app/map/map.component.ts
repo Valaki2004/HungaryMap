@@ -7,14 +7,41 @@ import { HttpClient } from '@angular/common/http';
   standalone: false,
   
   templateUrl: './map.component.html',
-  styleUrl: './map.component.css'
+  styleUrls: ['./map.component.css']
 })
-export class MapComponent  {
+export class MapComponent implements OnInit  {
   datas : any;
+  tooltipVisible = true;
+  tooltipText = '';
+  tooltipX = 0;
+  tooltipY = 0;
 
-  constructor(private http:HttpClient,private base: BaseService) {
-    this.base.getDatas().subscribe((res)=> this.datas.res=res)
-  } 
+  constructor(private http:HttpClient,private base: BaseService) {} 
+
+  ngOnInit(){
+    this.getDatas()
+  }
+  getDatas(){
+    this.base.getDatas().subscribe((res)=>{
+      if(res){
+        console.log(res)
+        this.datas=res}})
+  }
+  showTooltip(event: MouseEvent, text: string) {
+    console.log("Tooltip megjelenik:", text);
+    this.tooltipText = text;
+    this.tooltipVisible = true;
+    this.moveTooltip(event);
+  }
+  moveTooltip(event: MouseEvent) {
+    console.log("Egér pozíció:", event.clientX, event.clientY);
+    this.tooltipX = event.clientX -520;  
+    this.tooltipY = event.clientY -100;  
+  }
+  hideTooltip() {
+    console.log("Tooltip elrejtése");
+    this.tooltipVisible = false;
+  }
   // addCirclesToSvg() {
   //   const svgElement = document.getElementById('map');
   //   if (!svgElement || !this.datas) return;
