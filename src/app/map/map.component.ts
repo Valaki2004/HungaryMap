@@ -25,7 +25,9 @@ export class MapComponent implements OnInit  {
     this.base.getDatas().subscribe((res)=>{
       if(res){
         console.log(res)
-        this.datas=res}})
+        this.datas=res
+      };   
+  })
   }
   showText(event: MouseEvent, text: string) {
     console.log("Tooltip megjelenik:", text);
