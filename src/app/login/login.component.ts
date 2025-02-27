@@ -17,8 +17,8 @@ export class LoginComponent {
     const en = {
       "LOGIN": {
         "TITLE": "Login",
-        "USERNAME": "Username",
-        "USERNAME_PLACEHOLDER": "Enter your username",
+        "EMAIL": "Email",
+        "EMAIL_PLACEHOLDER": "Enter your email",
         "PASSWORD": "Password",
         "PASSWORD_PLACEHOLDER": "Enter your password",
         "SUBMIT": "Login",
@@ -31,8 +31,8 @@ export class LoginComponent {
     const hu = {
       "LOGIN": {
         "TITLE": "Bejelentkezés",
-        "USERNAME": "Felhasználónév",
-        "USERNAME_PLACEHOLDER": "Add meg a felhasználóneved",
+        "EMAIL": "Email",
+        "EMAIL_PLACEHOLDER": "Add meg a email címed",
         "PASSWORD": "Jelszó",
         "PASSWORD_PLACEHOLDER": "Add meg a jelszavad",
         "SUBMIT": "Bejelentkezés",

@@ -52,29 +52,10 @@
       </li>
       <li class="nav-item dropdown">
         <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Felhasználói menü
-        </a>
+          class="nav-link dropdown-toggle" href="#"id="navbarDropdown"role="button"data-toggle="dropdown"aria-haspopup="true"aria-expanded="false">Felhasználói menü</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a
-            class="dropdown-item"
-            routerLink="/register"
-            [routerLinkActive]="['active']"
-            >Regisztráció</a
-          >
-          <a
-            class="dropdown-item"
-            routerLink="/login"
-            [routerLinkActive]="['active']"
-            >Bejelentkezés</a
-          >
+          <a class="dropdown-item" routerLink="/register" [routerLinkActive]="['active']">Regisztráció</a>
+          <a class="dropdown-item" routerLink="/login" [routerLinkActive]="['active']" >Bejelentkezés</a>
         </div>
       </li>
     </ul>
@@ -95,9 +76,10 @@
         Keresés <i class="bi bi-search"></i>
       </button>
     </div>
+    <a *ngIf="user" class="nav-link active" aria-current="page" class="user" routerLink="/profile"><i class="bi bi-person-circle">Profile</i></a>
     <button  *ngIf="user" class="btn btn-outline-danger me-2" (click)="logout()">
       Kijelentkezés
     </button>
-    <!-- <p *ngIf="user" class="user">Bejelentkezve: {{ user.email }}</p> -->
+   
   </div>
 </nav>

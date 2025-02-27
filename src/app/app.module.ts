@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, IMAGE_CONFIG } from '@angular/common';
 import { SidePanelComponent } from './side-panel/side-panel.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { SidePanelComponent } from './side-panel/side-panel.component';
     LoginComponent,
     RegisterComponent,
     SidePanelComponent,
+    ProfileComponent,
 
   ],
   imports: [

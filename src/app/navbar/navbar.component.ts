@@ -18,9 +18,6 @@ export class NavbarComponent {
       this.user = user
     })
   }
-
-
-
   logout() {
     this.authService.logout().then(() => {
       console.log("Kijelentkezve")

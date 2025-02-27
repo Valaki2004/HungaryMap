@@ -7,6 +7,8 @@ import { CommentsComponent } from './comments/comments.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SidePanelComponent } from './side-panel/side-panel.component';
+import { ProfileComponent } from './profile/profile.component';
+import { loggedUserGuard } from './logged-user.guard';
 
 
 
@@ -17,6 +19,7 @@ const routes: Routes = [
   {path:"settlements",component:SettlementsComponent},
   {path:"comments",component:CommentsComponent},
   {path: "login", component: LoginComponent },
+  {path:"profile", component:ProfileComponent, canActivate:[loggedUserGuard]},
   {path: "register", component: RegisterComponent },
   {path: '', redirectTo: '/map', pathMatch: 'full' }
 ];
