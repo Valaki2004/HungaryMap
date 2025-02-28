@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseService } from '../base.service';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-settlements',
@@ -12,12 +14,18 @@ import { HttpClient } from '@angular/common/http';
 export class SettlementsComponent implements OnInit {
   datas:any=[]
   settlements={id:null,ESZ:null,Helysegnev:'',KH:null,eszaki_szelesseg_fok_perc:null,keleti_hossz_fok_perc:null} 
+  CurrentUser: any;
+  commentsString: any;
+  user:any
 
-  constructor(private http:HttpClient,private base:BaseService){}
+  constructor(private base:BaseService, private auth:AuthService, private route:ActivatedRoute) {}
   
   ngOnInit(){
       this.getDatas()
-  }
+      this.auth.getCurrentUser().subscribe(user => {
+        this.user = user
+      })
+    }
   
   getDatas(){
     this.base.getDatas().subscribe((res)=>{
@@ -59,7 +67,5 @@ export class SettlementsComponent implements OnInit {
   deleteSettlement(id:string){
     this.base.deleteSettlement(id).subscribe(()=>this.getDatas())
   }
-  redirecttocomment(){
-    
-  }
+  
 }

@@ -29,13 +29,13 @@ export class AuthService {
     isloggedUser(){
       return this.loggedUserSubject
     }
-  
     logout() {
       return this.afAuth.signOut();
     }
     getCurrentUser() {
       return this.afAuth.authState;
     }
+    
     loginWithGoogle() {
       return this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
     }

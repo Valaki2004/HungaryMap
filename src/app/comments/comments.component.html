@@ -1,9 +1,9 @@
 <div class="commets">
     <p>Az email címed:</p>
-    <input type="number" class="form-control" [(ngModel)]="commentsString.Email" disabled>
+    <input  class="form-control" [(ngModel)]="commentsString.Email" disabled="">
     <p>A helység neve:</p>
     <input type="text" class="form-control"  [(ngModel)]="commentsString.Helysegnev" disabled>
     <p>A kommented a helységről:</p>
-    <input class="form-control"  [(ngModel)]="commentsString.Commnet">
+    <input class="form-control"  [(ngModel)]="commentsString.Commnet" required>
     <button class="btn btn-outline-success" (click)="PostComment()">Kommentelés</button>
 </div>
