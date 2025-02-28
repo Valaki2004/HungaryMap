@@ -7,7 +7,7 @@ import { map, Observable } from 'rxjs';
 })
 export class BaseService {
   private databaseURL="https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/osszeshely"
-    private CommentURL="https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/comments"
+    
   constructor(private http:HttpClient){}
 
   getDatas(): Observable<any[]> {
@@ -34,12 +34,8 @@ export class BaseService {
   
     return this.http.post(`${this.databaseURL}/.json`, payload);
   }
-  getComments (){
-    return this.http.get(`${this.CommentURL}/.json`);
-  }
-  createComment(comment:any){
-    return this.http.post(`${this.databaseURL}/.json`, comment);
-  }
+  
+ 
   updateSettlement(id:string, settlement:any){
     return this.http.patch(`${this.databaseURL}/${id}.json`,settlement);
 }

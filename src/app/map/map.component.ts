@@ -15,9 +15,9 @@ export class MapComponent implements OnInit  {
   Text = '';
   X = 0;
   Y = 0;
-  panelOpen = false;  // Oldalsó panel nyitott állapota
-  selectedRegion = ''; // Kiválasztott megye neve
-
+  panelOpen = false;  
+  selectedRegion = '';
+  selectedCity = ''; 
 
 
   constructor(private http:HttpClient,private base: BaseService) {} 
@@ -51,12 +51,17 @@ export class MapComponent implements OnInit  {
   selectRegion(region: string) {
 
     this.selectedRegion = region;
-    
-    // **Megoldás: először bezárjuk, majd újra nyitjuk, hogy Angular érzékelje a változást**
     this.panelOpen = false;
     setTimeout(() => {
       this.panelOpen = true;
-    }, 10); // Kis késleltetés, hogy az Angular érzékelje
+    }, 10);
+  }
+  selectCity(city:string){
+    this.selectedCity = city;
+    this.panelOpen = false;
+    setTimeout(() => {
+      this.panelOpen = true
+    }, 10);
   }
 
   closePanel() {

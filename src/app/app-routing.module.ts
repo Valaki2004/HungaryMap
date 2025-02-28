@@ -13,7 +13,7 @@ import { loggedUserGuard } from './logged-user.guard';
 
 
 const routes: Routes = [
-  {path:"map",component:MapComponent},
+  {path:"map",component:MapComponent, canActivate:[loggedUserGuard]},
   {path:"navbar",component:NavbarComponent},
   {path:"side-panel", component:SidePanelComponent},
   {path:"settlements",component:SettlementsComponent},
@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: "login", component: LoginComponent },
   {path:"profile", component:ProfileComponent, canActivate:[loggedUserGuard]},
   {path: "register", component: RegisterComponent },
-  {path: '', redirectTo: '/map', pathMatch: 'full' }
+  {path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

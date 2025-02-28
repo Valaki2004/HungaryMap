@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule, IMAGE_CONFIG } from '@angular/common';
 import { SidePanelComponent } from './side-panel/side-panel.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SidePanelCityComponent } from './side-panel-city/side-panel-city.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ProfileComponent } from './profile/profile.component';
     RegisterComponent,
     SidePanelComponent,
     ProfileComponent,
+    SidePanelCityComponent,
 
   ],
   imports: [

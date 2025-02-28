@@ -9,7 +9,17 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   loggedUser : any
   private loggedUserSubject = new BehaviorSubject<boolean>(false)
-    constructor(private afAuth: AngularFireAuth) {}
+
+    constructor(private afAuth: AngularFireAuth ) {
+      this.afAuth.authState.subscribe((user)=> {
+        if(user){
+          this.loggedUserSubject.next(true)
+        }
+        else{
+          this.loggedUserSubject.next(false)
+        }
+      })
+    }
     register(email: string, password: string) {
       return this.afAuth.createUserWithEmailAndPassword(email, password);
     }
