@@ -59,4 +59,7 @@ export class SettlementsComponent implements OnInit {
   deleteSettlement(id:string){
     this.base.deleteSettlement(id).subscribe(()=>this.getDatas())
   }
+  redirecttocomment(){
+    
+  }
 }
