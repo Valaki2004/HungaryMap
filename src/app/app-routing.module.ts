@@ -9,10 +9,12 @@ import { RegisterComponent } from './register/register.component';
 import { SidePanelComponent } from './side-panel/side-panel.component';
 import { ProfileComponent } from './profile/profile.component';
 import { loggedUserGuard } from './logged-user.guard';
+import { NogradComponent } from './nograd/nograd.component';
 
 
 
 const routes: Routes = [
+  {path:"nograd",component:NogradComponent},
   {path:"map",component:MapComponent},
   {path:"navbar",component:NavbarComponent},
   {path:"side-panel", component:SidePanelComponent},

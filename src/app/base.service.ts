@@ -22,6 +22,9 @@ export class BaseService {
       })
     );
   }
+  getDatasForMap(){
+    return this.http.get("https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/osszeshely.json")
+  }
   createSettlement(settlement:any){
     const payload = {
       Helysegnev: settlement.Helysegnev || '',

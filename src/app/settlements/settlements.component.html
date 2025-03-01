@@ -42,7 +42,7 @@
                 <button class="btn btn-outline-warning" (click)="updateSettlement(data)">Település Frissitése</button>
                 <button class="btn btn-outline-danger" (click)="deleteSettlement(data.id)">Település Törlése</button>
                 <button class="btn btn-outline-primary" *ngIf="user"[routerLink]="['/comments', data.Helysegnev]" [routerLinkActive]="['active']" [queryParams]="{email: user?.email}">Kommentelés</button>
-                <button class="btn btn-outline-secondary">Megjelenités a térképen</button>
+                
             </td>   
         </tr>
     </tbody>

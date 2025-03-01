@@ -17,21 +17,20 @@ export class MapComponent implements OnInit  {
   Y = 0;
   panelOpen = false;  
   selectedRegion = '';
-  selectedCity = ''; 
-
-
   constructor(private http:HttpClient,private base: BaseService) {} 
-
   ngOnInit(){
     this.getDatas()
+  
   }
-  getDatas(){
-    this.base.getDatas().subscribe((res)=>{
-      if(res){
-
-        this.datas=res
-      };   
-  })
+  getDatas() {
+    this.http.get("https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/osszeshely.json")
+      .subscribe((data: any) => {
+        this.datas = Object.values(data);
+        console.log(this.datas); 
+        
+      }, (error) => {
+        console.error("Error loading data", error); 
+      });
   }
   showText(event: MouseEvent, text: string) {
     this.Text = text;
@@ -39,51 +38,65 @@ export class MapComponent implements OnInit  {
     this.moveText(event);
   }
   moveText(event: MouseEvent) {
-
     this.X = event.clientX +15;  
     this.Y = event.clientY +10;  
   }
   hideText() {
-
     this.isVisible = false;
   }
-
   selectRegion(region: string) {
-
     this.selectedRegion = region;
     this.panelOpen = false;
     setTimeout(() => {
       this.panelOpen = true;
     }, 10);
   }
-  selectCity(city:string){
-    this.selectedCity = city;
-    this.panelOpen = false;
-    setTimeout(() => {
-      this.panelOpen = true
-    }, 10);
-  }
-
   closePanel() {
     this.panelOpen = false;
   }
+  // convertDegreesMinutesToDecimal(degreesMinutes: string): number {
+  //   const parts = degreesMinutes.split(':');
+  //   const degrees = parseFloat(parts[0]);
+  //   const minutes = parseFloat(parts[1]);
+  //   return degrees + (minutes / 60);
+  // }
+  
   // addCirclesToSvg() {
+    
+  //   if (!this.datas || this.datas.length === 0) {
+  //     return;
+  //   }
+  
   //   const svgElement = document.getElementById('map');
-  //   if (!svgElement || !this.datas) return;
-  //   const minLong = 16; 
-  //   const maxLong = 22; 
-  //   const minLat = 45; 
-  //   const maxLat = 49; 
-  //   const svgWidth = 900; 
-  //   const svgHeight = 850; 
-  //   const offsetX = 0;    
-  //   const offsetY = -30;     
+  //   if (!svgElement) {
+  //     return;
+  //   }
+  
+  //   const minLong = 16;
+  //   const maxLong = 22;
+  //   const minLat = 45;
+  //   const maxLat = 49;
+  //   const svgWidth = 800;
+  //   const svgHeight = 750;
+  //   const offsetX = 45;
+  //   const offsetY = -50;
+  
   //   this.datas.forEach((helyseg: any) => {
-  //     const helysegNev = helyseg['Helységnév'];
-  //     const hossz = parseFloat(helyseg['KH'].replace(',', '.'));
-  //     const szel = parseFloat(helyseg['ÉSZ'].toString().replace(',', '.')); 
-  //     const cx = offsetX + ((hossz - minLong) / (maxLong - minLong)) * svgWidth;
-  //     const cy = offsetY + svgHeight - ((szel - minLat) / (maxLat - minLat)) * svgHeight;
+  //     const helysegNev = helyseg['Helysegnev'];
+  //     if (!helyseg['KH'] || !helyseg['ESZ']) {
+  //       console.warn(`Missing coordinates for ${helysegNev}`);
+  //       return;
+  //     }
+  //     const hossz = parseFloat(helyseg['KH']);
+  //     const szel = parseFloat(helyseg['ESZ']);
+  //     let hosszDecimal = isNaN(hossz) ? this.convertDegreesMinutesToDecimal(helyseg['keleti_hossz_fok_perc']) : hossz;
+  //     let szelDecimal = isNaN(szel) ? this.convertDegreesMinutesToDecimal(helyseg['eszaki_szelesseg_fok_perc']) : szel;
+  //     if (isNaN(hosszDecimal) || isNaN(szelDecimal)) {
+  //       console.warn(`Invalid coordinates for ${helysegNev}: (${hosszDecimal}, ${szelDecimal})`);
+  //       return;
+  //     }
+  //     const cx = (hosszDecimal - minLong) / (maxLong - minLong) * svgWidth + offsetX;
+  //     const cy = svgHeight - ((szelDecimal - minLat) / (maxLat - minLat) * svgHeight) + offsetY;
   //     const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   //     circle.setAttribute('cx', cx.toString());
   //     circle.setAttribute('cy', cy.toString());
@@ -92,7 +105,9 @@ export class MapComponent implements OnInit  {
   //     circle.setAttribute('stroke', 'black');
   //     circle.setAttribute('stroke-width', '1');
   //     circle.setAttribute('id', helysegNev);
+  
   //     svgElement.appendChild(circle);
   //   });
   // }
+  
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseService } from '../base.service';
-import { HttpClient } from '@angular/common/http';
+
 import { AuthService } from '../auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+
 import { SearchService } from '../search.service';
 
 @Component({

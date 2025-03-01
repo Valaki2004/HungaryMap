@@ -21,6 +21,7 @@ import { SidePanelComponent } from './side-panel/side-panel.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SidePanelCityComponent } from './side-panel-city/side-panel-city.component';
 import { SearchPipe } from './search.pipe';
+import { NogradComponent } from './nograd/nograd.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { SearchPipe } from './search.pipe';
     ProfileComponent,
     SidePanelCityComponent,
     SearchPipe,
+    NogradComponent,
 
   ],
   imports: [

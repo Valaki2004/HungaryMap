@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+
 @Component({
   selector: 'app-side-panel-city',
   standalone: false,
@@ -9,9 +10,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class SidePanelCityComponent {
   @Input() isOpen = false;  
-  @Input() selectedCity = ''; 
+  @Input() selectedRegion = ''; 
   @Output() close = new EventEmitter<void>(); 
 
+  constructor(){}
   closePanel() {
     this.close.emit(); 
   }
