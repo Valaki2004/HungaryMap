@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { BehaviorSubject } from 'rxjs';
 
@@ -10,7 +11,7 @@ export class AuthService {
   loggedUser : any
   private loggedUserSubject = new BehaviorSubject<boolean>(false)
 
-    constructor(private afAuth: AngularFireAuth ) {
+    constructor(private afAuth: AngularFireAuth, private router: Router ) {
       this.afAuth.authState.subscribe((user)=> {
         if(user){
           this.loggedUserSubject.next(true)
@@ -30,7 +31,8 @@ export class AuthService {
       return this.loggedUserSubject
     }
     logout() {
-      return this.afAuth.signOut();
+      this.afAuth.signOut()
+      this.router.navigate(['/map'])
     }
     getCurrentUser() {
       return this.afAuth.authState;

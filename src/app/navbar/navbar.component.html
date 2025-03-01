@@ -62,22 +62,11 @@
       id="navbarSupportedContent"
     ></div>
     <form class="form-inline my-2 my-lg-0 ml-auto" *ngIf="router.url === '/settlements'">
-      <input
-        class="form-control mr-sm-2"
-        type="search"
-        placeholder="Keresés"
-        aria-label="search"
-      />
     </form>
-    <div *ngIf="router.url === '/settlements'" class="margin d-grid gap-2 d-md-flex justify-content-md-end">
-      <button class="btn btn-outline-success" type="submit">
-        Keresés <i class="bi bi-search"></i>
-      </button>
     </div>
     <a *ngIf="user" class="nav-link active" aria-current="page" class="user" routerLink="/profile"><i class="bi bi-person-circle">Profile</i></a>
     <button  *ngIf="user" class="btn btn-outline-danger me-2" (click)="logout()">
       Kijelentkezés
     </button>
-   
-  </div>
+  
 </nav>

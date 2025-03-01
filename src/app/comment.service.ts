@@ -11,7 +11,7 @@ export class CommentService {
   getComments (){
     return this.http.get(`${this.CommentURL}/.json`);
   }
-  createComment(comment:{id:null, Helysegnev: any; Commnet: any; Email: any }){
+  createComment(comment:{id:null, Helysegnev: any; Comment: any; Email: any }){
     return this.http.post(`${this.CommentURL}/.json`, comment);
   }
 }

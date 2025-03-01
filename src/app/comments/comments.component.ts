@@ -1,50 +1,52 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseService } from '../base.service';
 import { CommentService } from '../comment.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-comments',
-  standalone: false,
-  
   templateUrl: './comments.component.html',
-  styleUrl: './comments.component.css'
+  styleUrls: ['./comments.component.css'],
+  standalone: false
 })
 export class CommentsComponent implements OnInit {
-    comments : string[] = []
-    commentsString = {id:null,Helysegnev:'',Commnet:'',Email:''}
-    user:any
+  comments: any[] = [];
+  commentData = { id: null, Helysegnev: '', Comment: '', Email: '' };
+  user: any;
 
+  constructor(
+    private commentService: CommentService,
+    private route: ActivatedRoute,
+    private auth: AuthService
+  ) {}
 
-    constructor (private commentsservice:CommentService, private route:ActivatedRoute, private auth :AuthService) {}
-     ngOnInit( ) {
-       this.commentsservice.getComments().subscribe((res)=>{
-        this.comments = res ? Object.values(res): []
-        this.route.paramMap.subscribe(params => {
-          this.commentsString.Helysegnev = params.get('helysegnev') || '';
-        });
-        this.route.queryParams.subscribe(params => {
-          this.commentsString.Email = params['email'] || '';
-        })
-        this.commentsservice.getComments().subscribe((res) => {
-          this.comments = res ? Object.values(res) : [];
-        });
-        this.auth.getCurrentUser().subscribe(user => {
-          this.user = user
-        })
-        
-     })
-     
+  ngOnInit(): void {
+    this.loadComments();
+    this.route.paramMap.subscribe(params => {
+      this.commentData.Helysegnev = params.get('helysegnev') || '';
+    });
+    this.route.queryParams.subscribe(params => {
+      this.commentData.Email = params['email'] || '';
+    });
+    this.auth.getCurrentUser().subscribe(user => {
+      this.user = user;
+    });
+  }
+
+  loadComments(): void {
+    this.commentService.getComments().subscribe(res => {
+      this.comments = res ? Object.values(res) : [];
+    });
+  }
+
+  postComment(): void {
+    if (this.commentData.Comment.trim()) {
+      this.commentService.createComment(this.commentData).subscribe(() => {
+        this.comments.push({ ...this.commentData });
+        this.commentData.Comment = '';
+      });
+    } else {
+      console.warn('A hozzászólás mező nem lehet üres!');
     }
-    PostComment() {
-      if (this.commentsString.Commnet.trim()) {
-        this.commentsservice.createComment(this.commentsString).subscribe(() => {
-          this.comments.push(Object.assign({},  this.commentsString.Email && this.commentsString.Helysegnev && this.commentsString.Commnet));
-          this.commentsString.Commnet = '';
-        });
-      } else {
-        console.warn('A hozzászólás mező nem lehet üres!');
-      }
-    }
+  }
 }

@@ -10,7 +10,7 @@
 .megye {
     transition: transform 0.5s ease-in-out;
     transform-origin: -10% 30%;
-    z-index: 1;
+    z-index: 0;
     cursor:pointer;
   }
  .megye:hover{
@@ -18,7 +18,8 @@
     fill: lightgreen
 }
 .fovaros:hover{
-    fill:red
+    fill:red;
+    z-index: 1;
 }
 .mousehover{
     position: absolute;
