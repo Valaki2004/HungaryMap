@@ -1,0 +1,40 @@
+.kozep{
+    text-align: center;
+    background: -webkit-linear-gradient(bottom,green,white 35%,red );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.megyek{
+   fill: white;
+   stroke: black;
+   stroke-width: 2px; 
+}
+
+.megye {
+    transition: transform 0.5s ease-in-out;
+    transform-origin: -10% 30%;
+    z-index: 0;
+    cursor:pointer;
+  }
+ .megye:hover{
+    transform: skewY(-1deg);
+    fill: lightgreen
+}
+.fovaros:hover{
+    fill:red;
+    z-index: 1;
+}
+.mousehover{
+    position: absolute;
+    color: black;
+    font-size: large;
+}
+.balaton{
+    fill: rgb(0, 191, 255);
+    transition: transform 0.5s ease-in-out;
+    z-index: 0;
+    cursor:pointer;
+}
+.balaton:hover{
+    fill: rgb(10, 107, 219)
+}
