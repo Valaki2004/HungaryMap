@@ -26,7 +26,7 @@ import { BudapestComponent } from './budapest/budapest.component';
 import { PestComponent } from './pest/pest.component';
 import { BacskicskunComponent } from './bacskicskun/bacskicskun.component';
 import { BalatonComponent } from './balaton/balaton.component';
-import { AsdComponent } from './asd/asd.component';
+
 
 
 @NgModule({
@@ -47,7 +47,7 @@ import { AsdComponent } from './asd/asd.component';
     PestComponent,
     BacskicskunComponent,
     BalatonComponent,
-    AsdComponent,
+
 
   ],
   imports: [

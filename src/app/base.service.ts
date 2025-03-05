@@ -8,8 +8,23 @@ import { map, Observable } from 'rxjs';
 export class BaseService {
   private databaseURL="https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/osszeshely"
   private balatonURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/balaton"  
+  private bigCities = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/nagyvarosok.json"
 
   constructor(private http:HttpClient){}
+
+  // getBigCities(): Observable<any[]>{
+  //   return this.http.get<{ [key: string]: any }>(`${this.bigCities}.json`).pipe(
+  //     map((res) => {
+  //       if (!res) return []; 
+  
+  //       return Object.keys(res).map((key) => ({
+  //         id: key, 
+  //         ...res[key], 
+  //       }));
+  //     })
+  //   );
+  // }
+
 
   getDatas(): Observable<any[]> {
     return this.http.get<{ [key: string]: any }>(`${this.databaseURL}.json`).pipe(
