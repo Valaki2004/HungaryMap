@@ -1,4 +1,4 @@
-import { Component,  OnInit, } from '@angular/core';
+import { AfterViewChecked, Component,  OnInit, } from '@angular/core';
 import { BaseService } from '../base.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit  {
+export class MapComponent implements OnInit,AfterViewChecked  {
   datas : any;
   isVisible = true;
   Text = '';
@@ -18,12 +18,21 @@ export class MapComponent implements OnInit  {
   Y = 0;
   panelOpen = false;  
   selectedRegion = '';
+  currentMap: string = 'map1';
+  private scale: number = 1; 
+  private viewBoxBase: [number, number, number, number] = [50, 0, 3100, 1900];
+  public viewBox: string = `50 0 3100 1900`; 
+  private minScale: number = 1500 / 1500; 
+  private maxScale: number = 5;
+  private isDragging: boolean = false;
+  private dragStart: { x: number, y: number } | null = null;
   regionName1  = ''
   regionName2 = ''
   regionName3 = ''
   regionName4 = ''
   regionName5 = ''
-  constructor(private http:HttpClient,private base: BaseService,private route:ActivatedRoute) {} 
+  constructor(private http:HttpClient,private base: BaseService,private route:ActivatedRoute) {}
+
   ngOnInit(){
       this.getDatas()
       this.route.paramMap.subscribe(params => {
@@ -35,12 +44,66 @@ export class MapComponent implements OnInit  {
       });
       
   }
+  ngAfterViewChecked() {
+    this.addCirclesToSvg();
+  }
+  zoomIn(): void {
+    if (this.scale < this.maxScale) {
+      this.scale *= 1.2;  
+      this.updateViewBox();
+    }
+  }
+
+  zoomOut(): void {
+    if (this.scale > this.minScale) {
+      this.scale /= 1.2;  
+      this.updateViewBox();
+    }
+  }
+
+  private updateViewBox(): void {
+    const newWidth = this.viewBoxBase[2] / this.scale;
+    const newHeight = this.viewBoxBase[3] / this.scale;
+
+    const offsetX = (this.viewBoxBase[2] - newWidth) / 2;
+    const offsetY = (this.viewBoxBase[3] - newHeight) / 2;
+    this.viewBox = `${offsetX + this.viewBoxBase[0]} ${offsetY + this.viewBoxBase[1]} ${newWidth} ${newHeight}`;
+  }
+
+  onMouseDown(event: MouseEvent): void {
+    this.isDragging = true;
+    this.dragStart = { x: event.clientX, y: event.clientY };
+  }
+
+  onMouseMove(event: MouseEvent): void {
+    if (!this.isDragging || !this.dragStart) return;
+
+    const dx = event.clientX - this.dragStart.x;
+    const dy = event.clientY - this.dragStart.y;
+
+    
+    this.viewBoxBase[0] -= dx / this.scale;  
+    this.viewBoxBase[1] -= dy / this.scale;  
+
+    this.updateViewBox();
+    this.dragStart = { x: event.clientX, y: event.clientY };
+  }
+
+  onMouseUp(): void {
+    this.isDragging = false;
+    this.dragStart = null;
+  }
+
+  onMouseLeave(): void {
+    this.isDragging = false;
+    this.dragStart = null;
+  }
+
   getDatas() {
     this.http.get("https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/nagyvarosok.json")
       .subscribe((data: any) => {
         if (data && data.osszeshelynagyvarosok && Array.isArray(data.osszeshelynagyvarosok)) {
           this.datas = data.osszeshelynagyvarosok;
-          this.addCirclesToSvg(); 
         } else {
 
           this.datas = [];
@@ -83,7 +146,7 @@ export class MapComponent implements OnInit  {
       return;
     }
   
-    const svgElement = document.getElementById('map');
+    const svgElement = document.getElementById('map1');
     if (!svgElement) {
       return;
     }
@@ -91,10 +154,10 @@ export class MapComponent implements OnInit  {
     const maxLong = 22;
     const minLat = 45;
     const maxLat = 49;
-    const svgWidth = 2650;
-    const svgHeight = 2200;
-    const offsetX = 100;
-    const offsetY = -20;
+    const svgWidth = 800;
+    const svgHeight = 750;
+    const offsetX = 45;
+    const offsetY = -30;
   
     this.datas.forEach((helyseg: any) => {
       const helysegNev = helyseg['Helysegnev'];
@@ -116,7 +179,7 @@ export class MapComponent implements OnInit  {
       circle.setAttribute('r', '3');
       circle.setAttribute('fill', 'grey');
       circle.setAttribute('stroke', 'black');
-      circle.setAttribute('stroke-width', '35');
+      circle.setAttribute('stroke-width', '5');
       circle.setAttribute('id', helysegNev);
       
       circle.addEventListener('mouseover', (event: MouseEvent) => {
@@ -130,5 +193,10 @@ export class MapComponent implements OnInit  {
       svgElement.appendChild(circle);
     });
   }
-  
+  showMap(): void {
+    this.addCirclesToSvg();
+    this.currentMap = this.currentMap === 'map1' ? 'map2' : 'map1';
+   
+  }
+
 }
