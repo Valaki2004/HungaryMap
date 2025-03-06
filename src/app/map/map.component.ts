@@ -91,10 +91,10 @@ export class MapComponent implements OnInit  {
     const maxLong = 22;
     const minLat = 45;
     const maxLat = 49;
-    const svgWidth = 800;
-    const svgHeight = 750;
-    const offsetX = 30;
-    const offsetY = -40;
+    const svgWidth = 2650;
+    const svgHeight = 2200;
+    const offsetX = 100;
+    const offsetY = -20;
   
     this.datas.forEach((helyseg: any) => {
       const helysegNev = helyseg['Helysegnev'];
@@ -114,9 +114,9 @@ export class MapComponent implements OnInit  {
       circle.setAttribute('cx', cx.toString());
       circle.setAttribute('cy', cy.toString());
       circle.setAttribute('r', '3');
-      circle.setAttribute('fill', 'black');
+      circle.setAttribute('fill', 'grey');
       circle.setAttribute('stroke', 'black');
-      circle.setAttribute('stroke-width', '5');
+      circle.setAttribute('stroke-width', '35');
       circle.setAttribute('id', helysegNev);
       
       circle.addEventListener('mouseover', (event: MouseEvent) => {
