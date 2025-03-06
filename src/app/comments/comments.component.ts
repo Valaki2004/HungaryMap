@@ -28,8 +28,8 @@ export class CommentsComponent implements OnInit {
     this.auth.getCurrentUser().subscribe(user => {
       this.user = user;
       if (user) {
-        this.commentData.Email = user.email || '';  // E-mail beállítása
-        this.commentData.displayName = user.displayName || 'Névtelen'; // Név beállítása
+        this.commentData.Email = user.email || '';  
+        this.commentData.displayName = user.displayName || 'Névtelen'; 
       }
     });
   }

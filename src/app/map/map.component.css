@@ -5,9 +5,10 @@
     -webkit-text-fill-color: transparent;
 }
 .megyek{
-   fill: white;
+    fill: white;
    stroke: black;
-   stroke-width: 2px; 
+
+   
 }
 
 .megye {
@@ -37,4 +38,44 @@
 }
 .balaton:hover{
     fill: rgb(10, 107, 219)
+}
+.ferto-to{
+    fill: rgb(0, 191, 255);
+    transition: transform 0.5s ease-in-out;
+    z-index: 0;
+    cursor:pointer;
+}
+.ferto-to:hover{
+    fill: rgb(10, 107, 219)
+}
+.idk{
+    fill: red;
+}
+
+
+
+.budapest{
+    fill:none;
+    stroke:#ff0000;
+    transition: transform 0.5s ease-in-out;
+    z-index: 0;
+    cursor:pointer;
+}
+.budapest:hover{
+    transform: skewY(-1deg);
+    fill: black;
+}
+.magyarország-külsö-border{
+    opacity: 0.5;
+    stroke: black;
+    stroke-width: 2px;
+}
+.tour-inline{
+    fill:none;
+    transition: transform 0.5s ease-in-out;
+    z-index: 0;
+    cursor:pointer;
+}
+.tour-white{
+    fill:none;
 }
