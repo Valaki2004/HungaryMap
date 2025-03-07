@@ -14,6 +14,7 @@ import { BudapestComponent } from './budapest/budapest.component';
 import { PestComponent } from './pest/pest.component';
 import { BacskicskunComponent } from './bacskicskun/bacskicskun.component';
 import { BalatonComponent } from './balaton/balaton.component';
+import { WebshopComponent } from './webshop/webshop.component';
 
 const routes: Routes = [
   { path: 'balaton', component: BalatonComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'navbar', component: NavbarComponent },
   { path: 'side-panel', component: SidePanelComponent },
   { path: 'settlements', component: SettlementsComponent },
+  { path:'shop', component:WebshopComponent},
   { path: 'comments', component: CommentsComponent, canActivate: [LoggedUserGuard] },
   { path: 'comments/:helysegnev', component: CommentsComponent },
   { path: 'login', component: LoginComponent },

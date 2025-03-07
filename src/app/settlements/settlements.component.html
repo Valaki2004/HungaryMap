@@ -1,6 +1,6 @@
 <!-- {{datas|json}} -->
 <div>
-    <input *ngIf="user" class="form-control mr-sm-2"type="search"placeholder="Keresés"aria-label="search"(keyup)="onKeyUp($event)" />
+    <input *ngIf="user" class="form-control mr-sm-2"type="search"placeholder="Keresés"aria-label="search"(keyup)="onKeyUp($event)" >
     <input type="text" class="form-control" placeholder="Helységnév" [(ngModel)]="settlements.Helysegnev" >
     <input type="number" class="form-control" placeholder="Keleti Hosszúság" [(ngModel)]="settlements.KH">
     <input type="number" class="form-control" placeholder="Keleti hosszúság fok,perc" [(ngModel)]="settlements.keleti_hossz_fok_perc">

@@ -26,6 +26,7 @@ import { BudapestComponent } from './budapest/budapest.component';
 import { PestComponent } from './pest/pest.component';
 import { BacskicskunComponent } from './bacskicskun/bacskicskun.component';
 import { BalatonComponent } from './balaton/balaton.component';
+import { WebshopComponent } from './webshop/webshop.component';
 
 
 
@@ -47,6 +48,7 @@ import { BalatonComponent } from './balaton/balaton.component';
     PestComponent,
     BacskicskunComponent,
     BalatonComponent,
+    WebshopComponent,
 
 
   ],
