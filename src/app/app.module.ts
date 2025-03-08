@@ -30,6 +30,8 @@ import { WebshopComponent } from './webshop/webshop.component';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,6 @@ import { WebshopComponent } from './webshop/webshop.component';
     BacskicskunComponent,
     BalatonComponent,
     WebshopComponent,
-
 
   ],
   imports: [

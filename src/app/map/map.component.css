@@ -10,18 +10,16 @@
 
 }
 .megye {
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease, fill 0.5s ease;
     transform-origin: -10% 30%;
-    z-index: 0;
+    
     cursor:pointer;
+    fill: white;
   }
  .megye:hover{
-    transform: skewY(-1deg);
-    fill: lightgreen
-}
-.fovaros:hover{
-    fill:red;
-    z-index: 1;
+    transform: skewY(-2deg);
+    fill: #CE2939;
+    z-index: 99;
 }
 .mousehover{
     position: absolute;
@@ -35,12 +33,18 @@
     cursor:pointer;
 }
 .balaton:hover{
-    fill: rgb(10, 107, 219)
+    fill: rgb(10, 107, 219);
+    transform: skewY(-1deg);
+    cursor:pointer;
 }
 .ferto-to{
     fill: rgb(0, 191, 255);
     z-index: 0;
+    transition: transform 0.5s ease-in-out;
+}
+.ferto-to:hover{
     cursor:pointer;
+    transform: skewY(-3deg);
 }
 .budapest{
     fill:none;
@@ -71,9 +75,6 @@
     transform: translate(208.92899px, 208.92901px) skewX(-1deg); 
 }
 
-.tour-white{
-    fill:none;
-}
 .kektura-terkep {
     position: relative;
     width: 100%;
@@ -82,4 +83,5 @@
   }
   .egesz{
     background-color: #93be8a;
+    fill: 	#477050
   }

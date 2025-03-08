@@ -16,7 +16,9 @@ import { BacskicskunComponent } from './bacskicskun/bacskicskun.component';
 import { BalatonComponent } from './balaton/balaton.component';
 import { WebshopComponent } from './webshop/webshop.component';
 
+
 const routes: Routes = [
+
   { path: 'balaton', component: BalatonComponent },
   { path: 'bács-kiskun', component: BacskicskunComponent },
   { path: 'pest', component: PestComponent },
