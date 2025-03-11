@@ -1,9 +1,28 @@
-<!-- {{shopDatas|json}} -->
- <div class="egesz">
-   <div class="row">
-    <div class="col" *ngFor="let data of shopDatas">
+<div class="kosar-gomb-container">
+  <button class="kosar-gomb">Kosár <i class="bi bi-bag-check-fill"></i></button>
+</div>
+
+<div class="kereses">
+  <div class="row">
+    <div class="col">
+      <h4>Szűrés:</h4>
+      <div class="filter-inputs">
+        <div class="filter-item">
+          <input class="form-control" type="text" placeholder="Keresés árszerint">Ár
+        </div>
+        <div class="filter-item">
+          <input class="form-control" type="text" placeholder="Keresés kategória szerint">Kategória
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="egesz">
+  <div class="row">
+    <div class="col cucc" *ngFor="let data of shopDatas">
       <div class="card" style="width: 18rem;">
-        <img class="card-img-top" [src]="data.path"  [alt]="data.alt">
+        <img class="card-img-top" [src]="data.path" [alt]="data.alt">
         <div class="card-body">
           <h5 class="card-title">{{data.nev}}</h5>
           <p class="card-text">{{data.ar}}Ft</p>
@@ -11,28 +30,5 @@
         </div>
       </div>
     </div>
-   </div>
- </div>
-
-
-<div class="kereses">
-  <div class="row">
-    <div class="col">
-    <table>
-      <thead>
-        <tr>
-          <h4>Szűrés:</h4>
-        </tr>
-      </thead>
-        <tbody class="row">
-              <td>
-                <input class="form-control" type="text" placeholder="Keresés árszerint">Ár
-              </td>
-              <td>
-                <input class="form-control"  type="text" placeholder="Keresés kategória szerint">Kategória
-              </td>
-        </tbody>
-      </table>
-    </div>
-    </div>
   </div>
+</div>
