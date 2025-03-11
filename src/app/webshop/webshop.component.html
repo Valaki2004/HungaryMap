@@ -1,5 +1,5 @@
 <div class="kosar-gomb-container">
-  <button class="kosar-gomb">Kosár <i class="bi bi-bag-check-fill"></i></button>
+  <button class="kosar-gomb" (click)="cardbtn()">Kosár <i class="bi bi-bag-check-fill"></i></button>
 </div>
 
 <div class="kereses">
@@ -26,7 +26,8 @@
         <div class="card-body">
           <h5 class="card-title">{{data.nev}}</h5>
           <p class="card-text">{{data.ar}}Ft</p>
-          <button class="btn btn-outline-primary">Megveszem</button>
+          <input #db value="1" type="number" class="form-control">
+          <button (click)="addStuff(element,db.value)" class="btn btn-outline-primary">Megveszem</button>
         </div>
       </div>
     </div>

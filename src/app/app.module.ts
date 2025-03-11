@@ -27,6 +27,8 @@ import { PestComponent } from './pest/pest.component';
 import { BacskicskunComponent } from './bacskicskun/bacskicskun.component';
 import { BalatonComponent } from './balaton/balaton.component';
 import { WebshopComponent } from './webshop/webshop.component';
+import { CardComponent } from './card/card.component';
+import { OrderComponent } from './order/order.component';
 
 
 
@@ -51,6 +53,8 @@ import { WebshopComponent } from './webshop/webshop.component';
     BacskicskunComponent,
     BalatonComponent,
     WebshopComponent,
+    CardComponent,
+    OrderComponent,
 
   ],
   imports: [
