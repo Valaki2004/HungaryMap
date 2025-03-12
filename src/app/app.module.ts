@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { CommentsComponent } from './comments/comments.component';
-import { SettlementsComponent } from './settlements/settlements.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { provideHttpClient } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -29,6 +28,8 @@ import { BalatonComponent } from './balaton/balaton.component';
 import { WebshopComponent } from './webshop/webshop.component';
 import { CardComponent } from './card/card.component';
 import { OrderComponent } from './order/order.component';
+import { SettlementsComponent } from './settlements/settlements.component';
+
 
 
 
@@ -39,7 +40,6 @@ import { OrderComponent } from './order/order.component';
     AppComponent,
     MapComponent,
     CommentsComponent,
-    SettlementsComponent,
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
@@ -55,6 +55,7 @@ import { OrderComponent } from './order/order.component';
     WebshopComponent,
     CardComponent,
     OrderComponent,
+    SettlementsComponent
 
   ],
   imports: [

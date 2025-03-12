@@ -1,4 +1,4 @@
-<!-- {{datas|json}} -->
+<!-- {{datas|json}}
 <div>
     <input *ngIf="user" class="form-control mr-sm-2"type="search"placeholder="Keresés"aria-label="search"(keyup)="onKeyUp($event)" >
     <input type="text" class="form-control" placeholder="Helységnév" [(ngModel)]="settlements.Helysegnev" >
@@ -46,4 +46,37 @@
         </tr>
     </tbody>
 </table>
-
+ -->
+ <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Helységnév</th>
+          <th>Keleti Hosszúság</th>
+          <th>Keleti hosszúság fok, perc</th>
+          <th>Északi szélesség</th>
+          <th>Északi szélesség fok, perc</th>
+          <th>Műveletek</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of paginatedDatas">
+          <td><input class="form-control" [(ngModel)]="data.Helysegnev"></td>
+          <td><input class="form-control" [(ngModel)]="data.KH"></td>
+          <td><input class="form-control" [(ngModel)]="data.keleti_hossz_fok_perc"></td>
+          <td><input class="form-control" [(ngModel)]="data.ESZ"></td>
+          <td><input class="form-control" [(ngModel)]="data.eszaki_szelesseg_fok_perc"></td>
+          <td>
+            <button class="btn btn-outline-warning" (click)="updateSettlement(data)">Frissítés</button>
+            <button class="btn btn-outline-danger" (click)="deleteSettlement(data.id)">Törlés</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <button class="btn" (click)="prevPage()" [disabled]="currentPage === 1">Előző</button>
+      <span>Oldal {{ currentPage }} / {{ totalPages }}</span>
+      <button class="btn" (click)="nextPage()" [disabled]="currentPage === totalPages">Következő</button>
+    </div>
+  </div>
+  
