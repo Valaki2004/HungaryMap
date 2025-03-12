@@ -118,4 +118,43 @@ tr:hover {
 tbody tr:nth-child(even) {
     background-color: #fafafa;
   }
+.kep{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    justify-self: center;
+}
+.svg{
+    width: 500px;
+    height: auto;
+}
+.fixed-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background-color: #28a745;
+    color: white;
+    border: none; 
+    border-radius: 50px; 
+    font-size: 18px; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; 
+    cursor: pointer; 
+    z-index: 1000; 
+  }
   
+  .fixed-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+  }
+  
+  .fixed-button:active {
+    background-color: #1e7e34;
+    transform: translateY(0);
+  }
+.kereses{
+    margin-bottom: 10px;
+}

@@ -1,80 +1,6 @@
-// import { Component, OnInit } from '@angular/core';
-// import { BaseService } from '../base.service';
-
-// import { AuthService } from '../auth.service';
-
-// import { SearchService } from '../search.service';
-
-// @Component({
-//   selector: 'app-settlements',
-//   standalone: false,
-  
-//   templateUrl: './settlements.component.html',
-//   styleUrl: './settlements.component.css'
-// })
-// export class SettlementsComponent implements OnInit {
-//   datas:any[]=[]
-//   settlements={id:null,ESZ:null,Helysegnev:'',KH:null,eszaki_szelesseg_fok_perc:null,keleti_hossz_fok_perc:null} 
-//   CurrentUser: any;
-//   commentsString: any;
-//   user:any
-//   word:string=''
-
-//   constructor(private base:BaseService, private auth:AuthService, private search:SearchService) {}
-  
-//   ngOnInit(){
-//       this.getDatas()
-//       this.auth.getCurrentUser().subscribe(user => {
-//         this.user = user
-//       })
-
-//     }
-  
-//   getDatas(){
-//     this.base.getDatas().subscribe((res)=>{
-//       this.datas=res
-//     })
-//     this.search.getSearchWord().subscribe(
-//       (res)=>this.word=res)
-//   }
-//   addSettlement() {
-//         this.base.createSettlement(this.settlements).subscribe({
-//       next: () => {
-//         console.log('Település sikeresen hozzáadva!');
-//         this.getDatas(); 
-//         this.settlements = { 
-//           id: null,
-//           Helysegnev: '',
-//           KH: null,
-//           keleti_hossz_fok_perc: null,
-//           ESZ: null,
-//           eszaki_szelesseg_fok_perc: null
-//         };
-//       },
-//     });
-//   }
-//   updateSettlement(settlement: any) {
-//     if (!settlement.id) {
-//       console.error("Hiba: Az azonosító hiányzik!", settlement);
-//       return;
-//     }
-//     this.base.updateSettlement(settlement.id, settlement).subscribe(() => {
-//       console.log("Sikeres frissítés:", settlement);
-//       this.getDatas(); 
-//     }, error => {
-//       console.error("Hiba a frissítés során:", error);
-//     });
-//   }
-//   deleteSettlement(id:string){
-//     this.base.deleteSettlement(id).subscribe(()=>this.getDatas())
-//   }
-//   onKeyUp(event:any){
-//     console.log(event.target.value)
-//     this.search.setSearchWord(event.target.value)
-//   }
-// }
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BaseService } from '../base.service';
+import { AuthService } from '../auth.service';
 
 interface Settlement {
   Helysegnev: string;
@@ -88,27 +14,33 @@ interface Settlement {
 @Component({
   selector: 'app-settlements',
   standalone: false,
-  
   templateUrl: './settlements.component.html',
   styleUrl: './settlements.component.css'
 })
 export class SettlementsComponent implements OnInit {
-  datas: Settlement[] = []; // Firebase-ből lekért adatok
-  paginatedDatas: Settlement[] = []; // A lapozott adatok
+  @Output() close = new EventEmitter<void>();
+  datas: Settlement[] = []; 
+  paginatedDatas: Settlement[] = [];
+  settlements={id:null,ESZ:null,Helysegnev:'',KH:null,eszaki_szelesseg_fok_perc:null,keleti_hossz_fok_perc:null} 
   currentPage: number = 1;
-  itemsPerPage: number = 20;
+  itemsPerPage: number = 50;
   totalPages: number = 0;
-  word: string = ''; // Keresési kulcsszó
+  word: string = '';
+  isVisible: boolean = false;
+  user:any
 
-  constructor(private baseService: BaseService) { }
+  constructor(private baseService: BaseService,private auth:AuthService) { }
 
   ngOnInit(): void {
-    this.getModifiedDatas(); // Firebase adatok lekérése
+    this.getModifiedDatas();
+    this.auth.getCurrentUser().subscribe(user => {
+      this.user = user
+    }) 
   }
 
   getModifiedDatas(): void {
     this.baseService.getDatas().subscribe((data: Settlement[]) => {
-      this.datas = data; // Firebase-ből lekért adatok
+      this.datas = data; 
       this.updatePagination();
     });
   }
@@ -140,31 +72,50 @@ export class SettlementsComponent implements OnInit {
 
   onKeyUp(event: any): void {
     this.word = event.target.value;
-    this.currentPage = 1; // Vissza az első oldalra kereséskor
+    this.currentPage = 1; 
     this.updatePagination();
   }
 
-  updateSettlement(data: Settlement): void {
-    console.log('Frissítés:', data);
+  updateSettlement(settlement: any) {
+    if (!settlement.id) {
+      console.error("Hiba: Az azonosító hiányzik!", settlement);
+      return;
+    }
+    this.baseService.updateSettlement(settlement.id, settlement).subscribe(() => {
+      console.log("Sikeres frissítés:", settlement);
+      this.getModifiedDatas(); 
+    }, error => {
+      console.error("Hiba a frissítés során:", error);
+    });
   }
 
   deleteSettlement(id: string): void {
     this.baseService.deleteSettlement(id).subscribe(() => {
-      this.getModifiedDatas(); // Újra lekérjük az adatokat a törlés után
+      this.getModifiedDatas();
     });
   }
-
-  addSettlement(): void {
-    const newSettlement: Settlement = {
-      Helysegnev: `Új Település ${this.datas.length + 1}`,
-      KH: 0,
-      keleti_hossz_fok_perc: 0,
-      ESZ: 0,
-      eszaki_szelesseg_fok_perc: 0,
-      id: `id-${this.datas.length + 1}`
-    };
-    this.baseService.createSettlement(newSettlement).subscribe(() => {
-      this.getModifiedDatas(); // Új adat hozzáadása után újra lekérjük az adatokat
-    });
+  addSettlement() {
+            this.baseService.createSettlement(this.settlements).subscribe({
+          next: () => {
+            this.getModifiedDatas(); 
+            this.settlements = { 
+              id: null,
+              Helysegnev: '',
+              KH: null,
+              keleti_hossz_fok_perc: null,
+              ESZ: null,
+              eszaki_szelesseg_fok_perc: null
+            };
+          },
+        });
+      }
+  closePanel() {
+    this.close.emit(); 
+  }
+  openModal() {
+    this.isVisible = true;
+  }
+  closeModal() {
+    this.isVisible = false;
   }
 }
