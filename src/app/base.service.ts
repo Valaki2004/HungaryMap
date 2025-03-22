@@ -16,7 +16,7 @@ export class BaseService {
   private shoesdataURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/Turafelszereles/cipok.json"
   private bedsdataURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/Turafelszereles/halozsakok.json"
   private tendsdataURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/Turafelszereles/satrok.json"
-  private allstutffsdataURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/Turafelszereles/osszuscucc.json"
+  private allstutffsdataURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/Turafelszereles/osszescucc.json"
   private lakedataURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/tavak"
 
   constructor(private http:HttpClient,private auth:AuthService){}
@@ -62,7 +62,7 @@ export class BaseService {
     );
   }
   getDatasForMap(){
-    return this.http.get("https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/osszeshely.json")
+    return this.http.get(this.databaseURL)
   }
   async createSettlement(settlement: any) {
     try {

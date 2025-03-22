@@ -18,15 +18,18 @@
             <div *ngIf="priceInvalid" class="invalid-feedback">
               Kérem adjon meg egy érvényes árat!
             </div>
+            
           </div>
           <div class="filter-item mb-3">
             <label for="category" class="mt-2">Kategória</label>
-            <select class="form-control" (change)="filterCategory($event)">
+            <label for="category" class="mt-2">Kategória</label>
+            <select class="form-control" (change)="SelectCategory($event)">
               <option value="">Összes kategória</option>
-              <option value="hátizsák">Hátizsákok</option>
-              <option value="túrahátizsák">Túrahátizsákok</option>
-              <option value="bélelt-hátizsák">Bélelt Hátizsákok</option>
-              <option value="vízálló-hátizsák">Vízálló Hátizsákok</option>
+              <option value="taskak">🎒 Táskák</option>
+              <option value="satrak">⛺ Sátrak</option>
+              <option value="biciklik">🚴 Biciklik</option>
+              <option value="cipok">👟 Cipők</option>
+              <option value="halozsakok">🛌 Hálózsákok</option>
             </select>
           </div>
           <div *ngIf="categoryInvalid" class="invalid-feedback">
@@ -39,6 +42,7 @@
           </button>
         </div>
       </div>
+
     </div>
 
     <div class="col-12 col-md-9">

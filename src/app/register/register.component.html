@@ -5,6 +5,8 @@
     </div>
   
     <h2>{{ 'REGISTER.TITLE' | translate }}</h2>
+    <button class="btn" (click)="registerWithGoogle()"><img class="kep" src="Google.jpg"></button>
+    <p class="szoveg">vagy regisztrálj: </p>
   
     <form *ngIf="!registrationSuccess" (ngSubmit)="register()" #registrationForm="ngForm">
       <div class="form-group">
@@ -50,7 +52,6 @@
       </div>
   
       <button type="submit" class="btn registerbutton" [disabled]="registrationForm.invalid">{{ 'REGISTER.SUBMIT' | translate }}</button>
-      <button (click)="registerWithGoogle()">Bejelentkezés Google-lel</button>
     </form>
   
     <div *ngIf="registrationSuccess" class="alert alert-success">

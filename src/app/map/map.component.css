@@ -312,3 +312,6 @@
 .bogacs:hover {
   transform: translate(750px, 175px) scale(2);
 }
+.circle-default{
+  fill: grey;
+}

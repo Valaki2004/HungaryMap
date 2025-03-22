@@ -5,7 +5,8 @@
     </div>
   
     <h2>{{ 'LOGIN.TITLE' | translate }}</h2>
-  
+    <button class="btn" (click)="loginWithGoogle()"><img class="kep" src="Google.jpg"></button>
+    <p class="szoveg">vagy jelentkezzbe: </p>
     <form>
       <div class="form-group">
         <label for="username">{{ 'LOGIN.EMAIL' | translate }}</label>
@@ -27,6 +28,7 @@
       </div>
       
       <button type="submit" (click)="login()" class="btn loginbutton">{{ 'LOGIN.SUBMIT' | translate }}</button>
-      <button (click)="loginWithGoogle()">Bejelentkezés Google-lel</button>
+
+
     </form>
   </div>

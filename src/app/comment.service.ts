@@ -6,29 +6,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CommentService {
-  private apiUrl = 'http://your-api-url/comments'; 
+  [x: string]: any;
+  private CommentURL="https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/comments"
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {}
-
-  getComments(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  getComments (){
+    return this.http.get(`${this.CommentURL}/.json`);
   }
-
-  createComment(comment: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/create`, comment);
-  }
-  deleteComment(commentId: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/delete/${commentId}`);
-  }
-  getCommentsByUser(email: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/getByUser/${email}`);
-  }
-
-  addNewTopic(topic: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/addTopic`, topic);
-  }
-  uploadFile(formData: FormData): Observable<any> {
-    return this.http.post('/api/upload', formData);
+  createComment(comment:{id:null, Helysegnev: any; Comment: any; Email: any }){
+    return this.http.post(`${this.CommentURL}/.json`, comment);
+  }  
+  deleteComment(id:string){
+    return this.http.delete(`${this.CommentURL}/${id}.json`);
   }
   
 }

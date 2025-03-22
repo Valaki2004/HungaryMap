@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit,} from '@angular/core';
 import { BaseService } from '../base.service';
 import { Router } from '@angular/router';
 import { CardService } from '../card.service';
@@ -29,6 +29,7 @@ export class WebshopComponent implements OnInit {
   filterOpen: boolean = false;
   priceInvalid: boolean = false;
   categoryInvalid: boolean = false;
+  @Input() selectedCategory = '';
 
   constructor(private base: BaseService, private router: Router, private crd: CardService) {}
 
@@ -38,7 +39,6 @@ export class WebshopComponent implements OnInit {
       this.cartCount = cart.length;
     });
   }
-
   toggleFilter(): void {
     this.filterOpen = !this.filterOpen;
   }
@@ -91,5 +91,13 @@ export class WebshopComponent implements OnInit {
 
   addStuff(element: any, db: number): void {
     this.crd.addElement(element, db);
+  }
+  SelectCategory(event:Event){
+    const category = (event.target as HTMLSelectElement).value;
+    if (category) {
+      this.router.navigate([`/${category}`]);
+    } else {
+      this.router.navigate(['/']); 
+    }
   }
 }

@@ -9,6 +9,13 @@ body {
   align-items: center;
   height: 100vh;
 }
+.kep{
+  width: 75px;
+  height: auto;
+}
+.szoveg{
+  margin: 20px;
+}
 
 .container {
   max-width: 500px;
@@ -97,7 +104,7 @@ button[type="submit"] {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   font-size: 18px;
-  margin-top: 15px;
+  margin: 15px;
   width: 100%;
 }
 

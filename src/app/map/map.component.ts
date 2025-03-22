@@ -75,14 +75,14 @@ export class MapComponent implements OnInit,AfterViewChecked  {
     if (!svgElement) {
       return;
     }
-    const minLong = 16;
-    const maxLong = 22;
-    const minLat = 45;
-    const maxLat = 49;
-    const svgWidth = 1000;
-    const svgHeight = 750;
-    const offsetX = 35;
-    const offsetY = 25;
+    const minLong = 16.27;
+    const maxLong = 22.2;
+    const minLat = 45.2;
+    const maxLat = 48.75;
+    const svgWidth = 947;
+    const svgHeight = 799;
+    const offsetX = 98;
+    const offsetY = 15;
   
     this.Citydatas.forEach((helyseg: any) => {
       const helysegNev = helyseg['Helysegnev'];

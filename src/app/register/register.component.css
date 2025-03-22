@@ -9,6 +9,13 @@ body {
     align-items: center;
     height: 100vh;
 }
+.kep{
+    width: 75px;
+    height: auto;
+  }
+  .szoveg{
+    margin: 20px;
+  }
 
 .container {
     max-width: 500px;

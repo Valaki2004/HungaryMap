@@ -88,4 +88,7 @@ export class HalozsakokComponent {
   addStuff(element: any, db: any) {
     this.crd.addElement(element, db);
   }
+  BackBtn(){
+    this.router.navigate( ['/shop']);
+  }
 }

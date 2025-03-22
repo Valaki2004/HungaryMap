@@ -7,4 +7,23 @@
   .col {
     margin: 10px;
   }
+  .back-btn {
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+  }
+  
+  .back-btn:hover {
+    background-color: #cc0000;
+  }
+  
+  .back-btn:focus {
+    outline: none;
+  }
   
