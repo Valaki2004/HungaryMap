@@ -1,7 +1,7 @@
-import { Component, Input, OnInit,} from '@angular/core';
-import { BaseService } from '../base.service';
+import { Component, EventEmitter, Input, OnInit, Output,} from '@angular/core';
 import { Router } from '@angular/router';
 import { CardService } from '../card.service';
+import { WebshopService } from '../webshop.service';
 
 interface ShopData {
   id?: string;
@@ -13,7 +13,15 @@ interface ShopData {
   maxDb: number;
   db: number;
 }
-
+interface Settlement {
+  Helysegnev: string;
+  KH: number;
+  keleti_hossz_fok_perc: number;
+  ESZ: number;
+  eszaki_szelesseg_fok_perc: number;
+  szeletseg: number | null;
+  id: string;
+}
 @Component({
   selector: 'app-webshop',
   templateUrl: './webshop.component.html',
@@ -30,8 +38,9 @@ export class WebshopComponent implements OnInit {
   priceInvalid: boolean = false;
   categoryInvalid: boolean = false;
   @Input() selectedCategory = '';
+  
 
-  constructor(private base: BaseService, private router: Router, private crd: CardService) {}
+  constructor(private webservice: WebshopService, private router: Router, private crd: CardService) {}
 
   ngOnInit(): void {
     this.loadShopData();
@@ -44,7 +53,7 @@ export class WebshopComponent implements OnInit {
   }
 
   loadShopData() {
-    this.base.getAllItems().subscribe((res) => {
+    this.webservice.getAllItems().subscribe((res) => {
       this.shopDatas = Object.values(res);
       this.filteredShopDatas = [...this.shopDatas];
     });
@@ -100,4 +109,5 @@ export class WebshopComponent implements OnInit {
       this.router.navigate(['/']); 
     }
   }
+ 
 }

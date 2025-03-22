@@ -18,13 +18,11 @@
             <div *ngIf="priceInvalid" class="invalid-feedback">
               Kérem adjon meg egy érvényes árat!
             </div>
-            
           </div>
           <div class="filter-item mb-3">
             <label for="category" class="mt-2">Kategória</label>
-            <label for="category" class="mt-2">Kategória</label>
-            <select class="form-control" (change)="SelectCategory($event)">
-              <option value="">Összes kategória</option>
+            <select class="custom-select" (change)="SelectCategory($event)">
+              <option value="osszes">Összes kategória</option>
               <option value="taskak">🎒 Táskák</option>
               <option value="satrak">⛺ Sátrak</option>
               <option value="biciklik">🚴 Biciklik</option>
@@ -42,24 +40,20 @@
           </button>
         </div>
       </div>
-
     </div>
-
     <div class="col-12 col-md-9">
       <div class="egesz">
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
           <div class="col" *ngFor="let data of filteredShopDatas">
             <div class="card shadow-sm h-100">
-              <img class="card-img-top" [src]="data.path" [alt]="data.alt">
+              <img class="card-img-top" style="display: block; margin: auto; width: 95%; height: auto;" [src]="data.path" [alt]="data.alt">
               <div class="card-body">
                 <h5 class="card-title">{{ data.nev }}</h5>
                 <p class="card-text text-muted">{{ data.ar }} Ft</p>
                 <div class="input-group">
                   <input [(ngModel)]="data.db" type="number" class="form-control text-center" min="1" [max]="data.maxDb">
                 </div>
-                <button (click)="addStuff(data, data.db)" class="btn btn-outline-success mt-2">
-                  Megveszem
-                </button>
+                <button (click)="addStuff(data, data.db)" class="btn btn-outline-success mt-2"> Megveszem </button>
               </div>
             </div>
           </div>

@@ -1,9 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { BaseService } from '../base.service';
-import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-
+import { WebshopService } from '../webshop.service';
+interface NewItem {
+  alt:string,
+  ar:Number,
+  id:string, 
+  nev:string, 
+  path:string,
+  tipus:string 
+}
 @Component({
   selector: 'app-admin',
   standalone: false,
@@ -12,11 +19,21 @@ import { firstValueFrom } from 'rxjs';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent implements OnInit {
+  Items:NewItem[]=[]
   req:any[]=[]
+  Item = {
+    alt:'',
+    ar:null,
+    id:null, 
+    nev:'', 
+    path:'',
+    tipus:'' 
+  };
   loggedUser: any;
   users: any;
+  newItem = { alt:'', ar:null,id:null, nev:'', path:'',tipus:'' }
   
-  constructor(private auth: AuthService, private base: BaseService, private router:Router) {
+  constructor(private auth: AuthService, private base: BaseService,private web:WebshopService) {
     this.auth.getLoggedUser().subscribe(
       (loggedUser) => {
         this.loggedUser = loggedUser;
@@ -29,6 +46,7 @@ export class AdminComponent implements OnInit {
   }
   ngOnInit(): void {
       this.getRequestedSettlements()
+      this.loadItems()
   }
   setCustomClaims(uid: any, claims: any) {
     this.auth.setUserClaims(uid, claims)?.subscribe(
@@ -60,12 +78,53 @@ export class AdminComponent implements OnInit {
       alert('Adat sikeresen átküldve a végleges helyre és sikeresen törölve a ideiglenes helyről.');
     } catch (error) {
       alert('Hiba történt az adat átküldésekor.');
-
     }
   }
   RejectSettlement(id: string): void {
     this.base.DeleteRequestedSettlement(id).subscribe(() => {
     this.getRequestedSettlements();
     });
+  }
+loadItems(): void {
+  this.web.getAllItems().subscribe({
+    next: (res) => this.Items = Array.isArray(res) ? res : Object.values(res),
+    error: (err) => console.error('Hiba a tételek betöltésekor:', err)
+  });
+}
+async addNewItem() {
+  const newItem = {
+    alt: '',
+    ar: null,
+    nev: '',
+    path: '',
+    tipus: ''
+  };
+
+  try {
+    const result = await this.web.createItem(newItem, );
+    console.log('Sikeresen hozzáadva:', result);
+  } catch (error) {
+    console.error('Hiba történt a mentéskor:', error);
+  }
+}
+// filterText(event: KeyboardEvent): void {
+//   const input = event.target as HTMLInputElement;
+//   input.value = input.value.replace(/[^a-zA-ZáéíóöőúüűÁÉÍÓÖŐÚÜŰ\s]/g, '');
+//   this.settlements.Helysegnev = input.value;
+// }
+  updateItem(item: any): void {
+    this.web.updateItem(item.id, item).subscribe({
+      next: (response) => {
+        console.log("Sikeres frissítés:", response);
+      },
+      error: (error) => {
+        console.error("Hiba a frissítés során:", error);
+      }
+    });
+  }
+  
+  deleteItem(id: string): void {
+    this.web.deleteItem(id).subscribe(() => this.loadItems());
+    
   }
 }

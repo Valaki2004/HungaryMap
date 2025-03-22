@@ -9,7 +9,7 @@ interface Settlement {
   keleti_hossz_fok_perc: number;
   ESZ: number;
   eszaki_szelesseg_fok_perc: number;
-  szeletseg: number | null;  // Új mező hozzáadása
+  szeletseg: number | null;
   id: string;
 }
 

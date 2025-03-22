@@ -11,12 +11,6 @@ export class BaseService {
   private TemperarydatabaseURL="https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/kertadat"
   private balatonURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/balaton"  
   private bigCities = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/nagyvarosok/osszeshelynagyvarosok.json"
-  private backpackdataURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/Turafelszereles/taskak.json"
-  private bikedataURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/Turafelszereles/biciklik.json"
-  private shoesdataURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/Turafelszereles/cipok.json"
-  private bedsdataURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/Turafelszereles/halozsakok.json"
-  private tendsdataURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/Turafelszereles/satrok.json"
-  private allstutffsdataURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/Turafelszereles/osszescucc.json"
   private lakedataURL = "https://magyarorszagmap-default-rtdb.europe-west1.firebasedatabase.app/tavak"
 
   constructor(private http:HttpClient,private auth:AuthService){}
@@ -24,31 +18,12 @@ export class BaseService {
   getBigCities(){
     return this.http.get(this.bigCities)
   }
-  getShopData(){
-    return this.http.get(this.backpackdataURL)
-  }
-  getBikeData(){
-    return this.http.get(this.bikedataURL)
-  }
   getLakeDatas(){
     return this.http.get(`${this.lakedataURL}/.json`)
-  }
-  getShoesDatas(){
-    return this.http.get(this.shoesdataURL)
-  }
-  getBedDatas(){
-    return this.http.get(this.bedsdataURL)
-  }
-  getTendDatas(){
-    return this.http.get(this.tendsdataURL)
   }
   getBalaton(){
     return this.http.get(this.balatonURL)
   }
-  getAllItems(){
-    return this.http.get(this.allstutffsdataURL)
-  }
-
   getDatas(): Observable<any[]> {
     return this.http.get<{ [key: string]: any }>(`${this.databaseURL}.json`).pipe(
       map((res) => {
@@ -112,7 +87,6 @@ export class BaseService {
     return this.http.get<{ [key: string]: any }>(`${this.TemperarydatabaseURL}.json`).pipe(
       map((res) => {
         if (!res) return [];
-
         return Object.keys(res)
           .map((key) => ({
             id: key,

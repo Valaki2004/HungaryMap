@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BaseService } from '../base.service';
 import { Router } from '@angular/router';
 import { CardService } from '../card.service';
+import { WebshopService } from '../webshop.service';
 interface ShopData {
   nev: string;
   ar: number;
@@ -29,7 +30,7 @@ export class SatrakComponent {
   priceInvalid: boolean = false; 
   categoryInvalid: boolean = false; 
 
-  constructor(private base: BaseService, private router: Router, private crd: CardService) {}
+  constructor(private webservice: WebshopService, private router: Router, private crd: CardService) {}
 
   ngOnInit(): void {
     this.loadShopData();
@@ -38,7 +39,7 @@ export class SatrakComponent {
     });
   }
   loadShopData() {
-    this.base.getTendDatas().subscribe((res) => {
+    this.webservice.getTendDatas().subscribe((res) => {
       this.shopDatas = Object.values(res);
       this.filteredShopDatas = [...this.shopDatas];
     });

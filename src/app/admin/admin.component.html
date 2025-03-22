@@ -26,6 +26,18 @@
         </div>        
     </div>
 </div>
+
+<div class="add-input-group center-container">
+    <p>Új Termék Hozzáadása:</p>
+      <input type="number" class="form-control form-input" placeholder="" [(ngModel)]="newItem.id" >
+      <input type="text" class="form-control form-input" placeholder="Az új eszköz neve" [(ngModel)]="newItem.nev" >
+      <input type="number" class="form-control form-input" placeholder="Az új eszköz ára" [(ngModel)]="newItem.ar" >
+      <input type="text" class="form-control form-input" placeholder="Az új eszköz tipusa" [(ngModel)]="newItem.tipus" >
+      <input type="text" class="form-control form-input" placeholder="Az új eszköz képének urlje" [(ngModel)]="newItem.path" >
+      <input type="text" class="form-control form-input" placeholder="Az új eszköz képéhez valami leirás" [(ngModel)]="newItem.alt" >
+  </div>
+<button class="add-btn" (click)="addNewItem()">Eszköz Hozzáadása</button>
+
 <table class="table table-bordered table-striped atmenet">
     <thead>
       <tr>
@@ -59,3 +71,32 @@
       </tr>
     </tbody>
   </table>
+
+
+  
+  <table class="table table-bordered table-striped atmenet">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Kép</th>
+        <th>A termék Típusa</th>
+        <th>A termék neve</th>
+        <th>Ára</th>
+        <th>Műveletek</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of Items ">
+        <td><input class="form-control" [(ngModel)]="data.id"></td>
+        <td><input class="form-control" [(ngModel)]="data.path"></td>
+        <td><input class="form-control" [(ngModel)]="data.tipus"></td>
+        <td><input class="form-control" [(ngModel)]="data.nev"></td>
+        <td><input class="form-control" [(ngModel)]="data.ar"></td>
+        <td>
+            <button class="btn btn-outline-warning" (click)="updateItem(data)">A termék frissitése</button>
+            <button class="btn btn-outline-danger" (click)="deleteItem(data.id)"> Termék törlése </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+ 
