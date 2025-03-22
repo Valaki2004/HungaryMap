@@ -1,0 +1,196 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.filter-panel {
+  background: #fff;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.filter-inputs {
+  margin-bottom: 20px;
+}
+
+.filter-item {
+  margin-bottom: 15px;
+}
+
+.filter-item label {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 5px;
+}
+
+.filter-item input,
+.filter-item select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
+.filter-item .input-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-item .input-group input {
+  flex: 1;
+}
+
+.invalid-feedback {
+  font-size: 0.8rem;
+  color: red;
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 400px; 
+  object-fit: cover;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+.input-group {
+  display: flex;
+  justify-content: center;
+}
+
+.input-group input {
+  width: 60px;
+  margin: 0 5px;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+/* Mobile view */
+@media (max-width: 767px) {
+  .filter-panel {
+    margin-top: 20px;
+    padding: 10px;
+  }
+
+  .filter-item {
+    margin-bottom: 10px;
+  }
+
+  .egesz .row {
+    align-items: center;
+  }
+
+  .col-md-6,
+  .col-lg-4 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  .input-group input {
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .filter-panel {
+    margin-top: 20px;
+    padding: 15px;
+  }
+
+  .col-md-4 {
+    margin-top: 10px;
+  }
+
+  .egesz .row {
+    justify-content: center;
+  }
+
+  .col-md-6 {
+    width: 48%;
+    margin: 1% 0;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  .egesz .row {
+    justify-content: space-between;
+  }
+
+  .col-md-6,
+  .col-lg-4 {
+    width: 45%; 
+    margin-bottom: 20px;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+  .row {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  
+  .col {
+    margin: 10px;
+  }
+  .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .col {
+    flex: 1 1 18rem;
+    padding: 10px;
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; 
+  }
+  
+}

@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-3 mb-4">
+      <div class="filter-panel">
+        <h4 class="text-center text-primary mb-4">Szűrés:</h4>
+        <div class="filter-inputs">
+          <div class="filter-item mb-3">
+            <label for="price" class="mt-2">Ár max</label>
+            <div class="input-group">
+              <input
+                class="form-control"
+                type="number"
+                placeholder="Keresés árszerint"
+                (input)="filterPrice($event)"
+                [ngClass]="{'is-invalid': priceInvalid}">
+              <span class="input-group-text">Ft</span>
+            </div>
+            <div *ngIf="priceInvalid" class="invalid-feedback">
+              Kérem adjon meg egy érvényes árat!
+            </div>
+          </div>
+          <div class="filter-item mb-3">
+            <label for="category" class="mt-2">Kategória</label>
+            <select class="form-control" (change)="filterCategory($event)">
+              <option value="">Összes kategória</option>
+              <option value="hátizsák">Hátizsákok</option>
+              <option value="túrahátizsák">Túrahátizsákok</option>
+              <option value="bélelt-hátizsák">Bélelt Hátizsákok</option>
+              <option value="vízálló-hátizsák">Vízálló Hátizsákok</option>
+            </select>
+          </div>
+          <div *ngIf="categoryInvalid" class="invalid-feedback">
+            Kérem adjon meg egy érvényes kategóriát!
+          </div>
+        </div>
+        <div class="text-center mt-3">
+          <button (click)="viewCart()" class="btn btn-primary btn-lg">
+            Kosár <span class="badge badge-light">{{ cartCount }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-9">
+      <div class="egesz">
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+          <div class="col" *ngFor="let data of filteredShopDatas">
+            <div class="card shadow-sm h-100">
+              <img class="card-img-top" [src]="data.path" [alt]="data.alt">
+              <div class="card-body">
+                <h5 class="card-title">{{ data.nev }}</h5>
+                <p class="card-text text-muted">{{ data.ar }} Ft</p>
+                <div class="input-group">
+                  <input [(ngModel)]="data.db" type="number" class="form-control text-center" min="1" [max]="data.maxDb">
+                </div>
+                <button (click)="addStuff(data, data.db)" class="btn btn-outline-success mt-2">
+                  Megveszem
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

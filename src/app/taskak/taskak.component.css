@@ -1,0 +1,10 @@
+.row {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  
+  .col {
+    margin: 10px;
+  }
+  

@@ -1,0 +1,70 @@
+.comments-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.topic-card, .comment, .reply {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.topic-card:hover, .comment:hover, .reply:hover {
+  transform: translateY(-5px);
+  background-color: #f1f1f1;
+}
+
+.hover-box:hover {
+  background-color: #e9ecef;
+  cursor: pointer;
+}
+
+.no-topics {
+  color: #888;
+  font-size: 1.25rem;
+}
+
+.no-topics h4 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.comment-form textarea {
+  border-radius: 8px;
+  resize: none;
+  min-height: 150px;
+}
+
+.comment-form button {
+  border-radius: 25px;
+  background-color: #007bff;
+  color: #fff;
+}
+
+.comment-form button:hover {
+  background-color: #0056b3;
+}
+
+.moderator-section {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pagination button {
+  font-size: 14px;
+  padding: 8px 15px;
+}
+
+.pagination button[disabled] {
+  opacity: 0.5;
+}
+
+.pagination {
+  margin-top: 20px;
+}

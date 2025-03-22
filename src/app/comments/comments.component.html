@@ -1,0 +1,108 @@
+<div class="container mt-5" style="max-width: 1200px; padding: 0 15px;">
+  <div class="comments-container">
+    <h3 class="mb-4 text-center text-primary">
+      <i class="bi bi-chat-left-text-fill"></i> Fórum
+    </h3>
+    
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div>
+        <label for="categorySelect" class="form-label">Kategória</label>
+        <select id="categorySelect" class="form-select" [(ngModel)]="selectedCategory">
+          <option value="all">Összes</option>
+          <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        </select>
+      </div>
+      <input type="text" class="form-control w-25" [(ngModel)]="searchTerm" placeholder="Téma keresése" />
+    </div>
+    <div *ngIf="filteredTopics().length === 0" class="no-topics text-center p-5">
+      <h4>Nincs elérhető téma</h4>
+      <p>Új témák hozzáadásához jelentkezz be, vagy próbálkozz később!</p>
+    </div>
+    <div *ngFor="let topic of filteredTopics()" class="topic-card mb-4 p-4 border rounded-lg shadow-lg bg-white hover-box">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div>
+          <p class="fw-bold mb-1">{{ topic.title }}</p>
+          <p class="text-muted mb-0">Téma létrehozva: {{ topic.createdAt | date: 'yyyy-MM-dd HH:mm:ss' }}</p>
+        </div>
+        <div *ngIf="isModeratorOrAdmin()">
+          <button class="btn btn-outline-info btn-sm" (click)="openTopic(topic.id)">Téma megtekintése</button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="selectedTopic" class="topic-details">
+      <div class="mb-4">
+        <h4>{{ selectedTopic.title }}</h4>
+        <p>{{ selectedTopic.description }}</p>
+        <button class="btn btn-outline-secondary btn-sm" (click)="toggleDarkMode()">
+          <i class="bi bi-moon"></i> Sötét mód
+        </button>
+      </div>
+      <div *ngFor="let comment of selectedTopic.comments" class="comment mb-4 p-4 border rounded-lg shadow-sm bg-light hover-box">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div class="d-flex align-items-center">
+            <img src="{{ comment.profilePicture }}" alt="{{ comment.displayName }}" class="rounded-circle" style="width: 45px; height: 45px; margin-right: 10px;">
+            <p class="fw-bold mb-0">{{ comment.displayName }}</p>
+          </div>
+          <p><small class="text-muted">{{ comment.createdAt | date: 'yyyy-MM-dd HH:mm:ss' }}</small></p>
+        </div>
+        <p>{{ comment.Comment }}</p>
+      
+        <div *ngIf="comment.fileUrl" class="mt-3">
+          <a [href]="comment.fileUrl" target="_blank" class="btn btn-outline-primary btn-sm">
+            <i class="bi bi-download"></i> Fájl letöltése
+          </a>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <button class="btn btn-outline-success btn-sm" (click)="voteComment(comment.id, 'up')">
+            <i class="bi bi-chevron-up"></i> Pozitív
+          </button>
+          <button class="btn btn-outline-danger btn-sm ml-2" (click)="voteComment(comment.id, 'down')">
+            <i class="bi bi-chevron-down"></i> Negatív
+          </button>
+        </div>
+
+        <div *ngFor="let reply of comment.replies" class="reply p-3 mb-2 border rounded-lg shadow-sm bg-light">
+          <p class="fw-bold">{{ reply.displayName }} válaszolt: </p>
+          <p>{{ reply.Comment }}</p>
+        </div>
+        
+        <!-- Válasz gomb -->
+        <button class="btn btn-outline-primary btn-sm" (click)="replyToComment(comment.id)">
+          <i class="bi bi-reply"></i> Válasz
+        </button>
+      </div>
+
+      <div class="comment-form mt-5">
+        <h4 class="mb-3 text-primary"><i class="bi bi-pencil-square"></i> Új hozzászólás</h4>
+        <textarea [(ngModel)]="newCommentData.Comment" class="form-control mb-3" placeholder="Írd be a hozzászólásod..." required></textarea>
+        
+        <input type="file" (change)="onFileChange($event)" class="mb-3" />
+        
+        <button (click)="postComment()" class="btn btn-primary w-100">
+          <i class="bi bi-send"></i> Küldés
+        </button>
+      </div>
+    </div>
+    <div *ngIf="isModeratorOrAdmin()" class="moderator-section mt-5 bg-light p-4 rounded-lg shadow-sm">
+      <h4 class="mb-3 text-primary"><i class="bi bi-plus-circle"></i> Új téma hozzáadása</h4>
+      <input type="text" [(ngModel)]="newTopicTitle" class="form-control mb-3" placeholder="Téma címe" required>
+      <textarea [(ngModel)]="newTopicContent" class="form-control mb-3" placeholder="Téma tartalma" required></textarea>
+      <select [(ngModel)]="newTopicCategory" class="form-select mb-3">
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+      <button (click)="addNewTopic()" class="btn btn-success w-100">
+        <i class="bi bi-plus-circle"></i> Új téma hozzáadása
+      </button>
+    </div>
+
+    <div class="pagination mt-4 d-flex justify-content-center align-items-center">
+      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left-circle"></i> Előző
+      </button>
+      <span class="mx-2 text-muted">Oldal: {{ currentPage }} / {{ totalPages }}</span>
+      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" class="btn btn-outline-secondary btn-sm">
+        Következő <i class="bi bi-arrow-right-circle"></i>
+      </button>
+    </div>
+  </div>
+</div>
