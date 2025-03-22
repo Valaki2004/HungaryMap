@@ -91,22 +91,35 @@ loadItems(): void {
     error: (err) => console.error('Hiba a tételek betöltésekor:', err)
   });
 }
-async addNewItem() {
-  const newItem = {
-    alt: '',
-    ar: null,
-    nev: '',
-    path: '',
-    tipus: ''
-  };
+async addNewItem(): Promise<void> {
+  // if(
+  //   !newItem.alt || 
+  //   !newItem.ar ||
+  //   !newItem.nev ||
+  //   !newItem.path ||
+  //   !newItem.tipus
+  // ){
+  //   alert('Nem adható meg üres vagy 0 érték!');
+  //    return;
+  // }
+ 
 
   try {
-    const result = await this.web.createItem(newItem, );
-    console.log('Sikeresen hozzáadva:', result);
+    await this.web.createItem( this.newItem);
+    this.Item = {
+      id:null,
+      alt: '',
+      ar: null,
+      nev: '',
+      path: '',
+      tipus: ''
+    }
+    
   } catch (error) {
     console.error('Hiba történt a mentéskor:', error);
   }
 }
+
 // filterText(event: KeyboardEvent): void {
 //   const input = event.target as HTMLInputElement;
 //   input.value = input.value.replace(/[^a-zA-ZáéíóöőúüűÁÉÍÓÖŐÚÜŰ\s]/g, '');
