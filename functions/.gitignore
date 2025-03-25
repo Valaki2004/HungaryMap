@@ -1,0 +1,4 @@
+node_modules/
+*.local
+firebase-debug.log
+magyarorszagmap-firebase-adminsdk-cgvek-d40c1c8624.json

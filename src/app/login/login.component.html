@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="language-selector">
+    <button (click)="changeLanguage('hu')">Magyar</button>
+    <button (click)="changeLanguage('en')">English</button>
+  </div>
+
+  <h2>{{ 'LOGIN.TITLE' | translate }}</h2>
+  <button class="btn" (click)="loginWithGoogle()"><img class="kep" src="Google.jpg"></button>
+  <p class="szoveg">vagy jelentkezz be: </p>
+  
+  <form (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="username">{{ 'LOGIN.EMAIL' | translate }}</label>
+      <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" id="username" type="text" class="form-control" placeholder="{{ 'LOGIN.EMAIL_PLACEHOLDER' | translate }}">
+    </div>
+
+    <div class="form-group">
+      <label for="password">{{ 'LOGIN.PASSWORD' | translate }}</label>
+      <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password" id="password" class="form-control" placeholder="{{ 'LOGIN.PASSWORD_PLACEHOLDER' | translate }}">
+    </div>
+
+    <div class="form-group">
+      <a routerLink="/register" class="already-have-account">{{ 'LOGIN.REGISTER' | translate }}</a>
+    </div>
+
+    <div class="form-group">
+      <a routerLink="/forgot-password" class="forgot-password">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</a>
+    </div>
+
+    <button type="submit" class="btn loginbutton">{{ 'LOGIN.SUBMIT' | translate }}</button>
+  </form>
+
+  <p *ngIf="loginError" class="text-danger">{{ loginError }}</p>
+</div>

@@ -1,0 +1,24 @@
+<div class="text-center mt-3">
+  <button  class="back-btn" (click)="BackBtn()">Vissza a főoldalra</button>
+  <button (click)="viewCart()" class="btn btn-primary btn-lg">
+    Kosár <span class="badge badge-light">{{ cartCount }}</span>
+  </button>
+ 
+</div>
+<div class="row justify-content-end">
+  <div class="col" *ngFor="let data of filteredShopDatas">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" [src]="data.path" [alt]="data.alt">
+      <div class="card-body">
+        <h5 class="card-title">{{ data.nev }}</h5>
+        <p class="card-text text-muted">{{ data.ar }} Ft</p>
+        <div class="input-group">
+          <input [(ngModel)]="data.db" type="number" class="form-control text-center" min="1" [max]="data.maxDb">
+        </div>
+        <button (click)="addStuff(data, data.db)" class="btn btn-outline-success mt-2">
+          Megveszem
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
