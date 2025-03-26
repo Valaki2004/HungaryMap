@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BaseService } from '../base.service';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 interface Settlement {
   Helysegnev: string;
@@ -42,7 +43,7 @@ export class SettlementsComponent implements OnInit {
   moderator: any = null;
   admin: any = null; 
 
-  constructor(private baseService: BaseService, private auth: AuthService,private router:Router) { }
+  constructor(private baseService: BaseService, private auth: AuthService,private router:Router,private http:HttpClient) { }
 
   ngOnInit(): void {
     this.getModifiedDatas();
@@ -167,4 +168,9 @@ export class SettlementsComponent implements OnInit {
   BackBtn(){
     this.router.navigate( ['/map']);
   }
+  
+  booking(){
+    return this.http.get( `https://www.booking.com/searchresults.hu.html?ss=${this.datas}`)
+  }
+  // <a> href="https://www.booking.com/searchresults.hu.html?ss={{ data }}" target="cityWindow">{{ data }} </a>
 }

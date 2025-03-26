@@ -144,7 +144,7 @@ export class MapComponent implements OnInit,AfterViewChecked  {
       const circleId = `circle-${helysegNev}`; 
       circle.setAttribute('cx', cx.toString());
       circle.setAttribute('cy', cy.toString());
-      circle.setAttribute('r', '5');
+      circle.setAttribute('r', '2.3');
       circle.setAttribute('fill', 'black');
       circle.setAttribute('stroke-width', '10');
       circle.setAttribute('id', circleId); 

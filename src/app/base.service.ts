@@ -16,6 +16,7 @@ export class BaseService {
 
   constructor(private http:HttpClient,private auth:AuthService, private db:AngularFireDatabase){}
 
+  
   getBigCities(){
     return this.http.get(this.bigCities)
   }

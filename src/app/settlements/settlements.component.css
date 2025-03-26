@@ -3,6 +3,22 @@ body {
   background-color: #f0f2f5;
   margin: 20px;
 }
+.button-link {
+  
+  
+  background-color: #28a745;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.button-link:hover {
+  background-color: #218838;
+}
+.link{
+  color: white;
+  text-decoration: none;
+}
 
 div {
   margin-bottom: 20px;

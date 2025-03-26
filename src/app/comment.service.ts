@@ -143,5 +143,15 @@ export class CommentService {
       })
     );
   }
+  getReplyByUser(email: string): Observable<any[]> {
+    return this.http.get<{ [key: string]: any }>(`${this.replyURL}/.json`).pipe(
+      map(res => {
+        if (!res) return []; 
+        return Object.keys(res)
+          .map(key => ({ id: key, ...res[key] }))
+          .filter(comment => comment.Email === email);  
+      })
+    );
+  }
 }
 

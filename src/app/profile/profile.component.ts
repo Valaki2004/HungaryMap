@@ -15,11 +15,13 @@ export class ProfileComponent {
   editMode = false;
   editedDisplayName = '';
   comments: any[] = [];
+  reply:any[]=[];
   orders: any[] = [];
   selectedOrder: any = null; 
   user: any;
   currentPage = 1;
   commentsPerPage = 5;
+  repliesPerPage = 5;
 
   constructor(
     private auth: AuthService,
@@ -31,6 +33,7 @@ export class ProfileComponent {
         this.loggedUser = user;
         this.editedDisplayName = user.displayName || '';
         this.loadUserComments(user.email);
+        this.loadUserRepies(user.email)
         this.loadOrders(user.email);
       }
     });
@@ -63,6 +66,13 @@ export class ProfileComponent {
       },
     );
   }
+  loadUserRepies(email: string): void {
+    this.commentservice.getReplyByUser(email).subscribe(
+      (usereplies: any[]) => {
+        this.reply = usereplies;
+      },
+    );
+  }
 
   loadOrders(email: string): void {
     this.cardService.getOrdersByUser(email).subscribe(
@@ -84,6 +94,10 @@ export class ProfileComponent {
   
 
   get paginatedComments() {
+    const start = (this.currentPage - 1) * this.repliesPerPage;
+    return this.reply.slice(start, start + this.repliesPerPage);
+  }
+  get paginatedReplies() {
     const start = (this.currentPage - 1) * this.commentsPerPage;
     return this.comments.slice(start, start + this.commentsPerPage);
   }
