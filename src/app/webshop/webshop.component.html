@@ -1,0 +1,90 @@
+<div class="image">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-2">
+        <div>
+          <h4>Szűrés:</h4>
+          <div>
+            <div>
+              <label for="price">Ár max:</label>
+              <div>
+                <input
+                  id="price"
+                  type="number"
+                  placeholder="Pl. 10000"
+                  (input)="filterPrice($event)"
+                  [(ngModel)]="maxPrice">
+                <span>Ft</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="200000"
+                step="1000"
+                [(ngModel)]="maxPrice"
+                (input)="filterPrice($event)">
+              <div *ngIf="priceInvalid">
+                Kérem adjon meg egy érvényes árat!
+              </div>
+            </div>
+  
+            <div>
+              <label for="category">Kategória</label>
+              <select id="category" (change)="SelectCategory($event)">
+                <option value="osszes">Összes kategória</option>
+                <option value="taskak">🎒 Táskák</option>
+                <option value="satrak">⛺ Sátrak</option>
+                <option value="biciklik">🚴 Biciklik</option>
+                <option value="cipok">👟 Cipők</option>
+                <option value="halozsakok">🛌 Hálózsákok</option>
+              </select>
+              <div *ngIf="categoryInvalid">
+                Kérem válasszon egy kategóriát!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cim">
+    <h3 style="color: white;">Termékek a kosárban:</h3>
+  </div>
+  <div class="container-fluid">
+    <div *ngIf="card.length > 0; else emptyCart" class="card-container col-12">
+      <div *ngFor="let item of card" class="card-item shadow-lg p-3 mb-3 rounded">
+        <img [src]="item.path" alt="{{ item.nev }}" class="card-item-image rounded">
+        <div class="card-item-info ms-3">
+          <h5>{{ item.nev }}</h5>
+          <strong>Ár:</strong> {{ item.ar }} Ft
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="empty">
+      <ng-template #emptyCart class="empty">
+        <p style="color: white;">Az Ön kosara üres.</p>
+      </ng-template>
+    </div>
+  </div>
+  <div class="cart-summary">
+    <h4 class="ar"><strong>Végösszeg:</strong> {{ getTotalPrice() }} Ft</h4>
+    <button class="buy" (click)="viewCart()">Tovább a rendeléshez <span>{{ cartCount }}</span></button>
+  </div>
+</div>
+
+<!-- Termékek -->
+<div class="container-fluid">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 mt-4">
+    <div class="col" *ngFor="let data of filteredShopDatas">
+      <div class="card shadow-sm h-100">
+        <img class="card-img-top" [src]="data.path" [alt]="data.alt" style="width: 100%; height: 200px; object-fit: contain; margin: 0 auto;">
+        <div class="card-body">
+          <h5 class="card-title" name="nev">{{ data.nev }}</h5>
+          <p class="card-text" name="ar">{{ data.ar | number }} Ft</p>
+            <button (click)="addStuff(data, data.db)" class="btn btn-outline-success mt-2">Kosárba helyezés</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

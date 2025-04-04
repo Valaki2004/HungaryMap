@@ -1,0 +1,106 @@
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #e3e3e3, #f8f9fa);
+  color: #212529;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+.side-panel.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.container.content {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  width: 80%;
+  max-width: 1200px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.country-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.country-flag,
+.country-Crest {
+  margin-top: 10px;
+}
+
+.city-item {
+  list-style: none;
+  padding: 8px;
+  margin: 5px 0;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.city-item:hover {
+  background-color: #b8f725;
+  color: #ffffff;
+}
+
+.navigate-btn-container{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100vh;
+}
+
+.navigate-btn {
+  margin: 20px;
+  padding: 10px 20px;
+  background-color: #007aff;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.navigate-btn:hover {
+  background-color: #005bb5;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.close-btn i {
+  font-size: 1.5rem;
+  margin-top: 30px;
+  color: #212529;
+}
+
+.close-btn:hover i {
+  color: #ff0000;
+}
