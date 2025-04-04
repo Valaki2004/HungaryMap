@@ -132,7 +132,4 @@ export class WebshopComponent implements OnInit {
     const price = Number(item.ar);
     return isNaN(price) ? 1 : price;
   }
-  
-  
-  
 }

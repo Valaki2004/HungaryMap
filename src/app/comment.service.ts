@@ -117,7 +117,7 @@ export class CommentService {
         reporterUserId: user.uid,
         reporterName: user.displayName,
         reporterEmail: user.email ,
-        timestamp: Date.now(),
+        timestamp:  new Date().toISOString(),
       };
       this.addData('reports', report).then(() => {
         alert('Komment jelentve!');

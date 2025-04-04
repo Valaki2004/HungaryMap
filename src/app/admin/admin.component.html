@@ -116,30 +116,36 @@
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
-        <th>Jelentő neve</th>
+        <th>Komment létrehozásának dátuma</th>
+        <th>Report létrehozásának dátuma</th>
         <th>Komment</th>
-        <th>Email</th>
-        <th>Létrehozva</th>
-        <th>Report oka</th>
-        <th>Report leirt oka</th>
-        <th>Kommentelő IDja</th>
-        <th>Müveletek</th>
+        <th>Jelentő neve</th>
+        <th>Jelentő emailja</th>
+        
+        <th>Jelentett neve</th>
+        <th>Jelentett emailja</th>
+        <th>Jelentés oka</th>
+        <th>Jelentés egyéb okból</th>
+        <th>Műveletek</th>
       </tr>
     </thead>
     <tbody>
       <ng-container *ngFor="let comment of comments">
         <ng-container *ngFor="let report of comment.reports; let i = index">
           <tr>
-            <td>{{ report.reporterName }}</td>
-            <td *ngIf="i === 0" [attr.rowspan]="comment.reports.length">{{ comment.Comment }}</td>
-            <td *ngIf="i === 0" [attr.rowspan]="comment.reports.length">{{ comment.Email }}</td>
             <td *ngIf="i === 0" [attr.rowspan]="comment.reports.length">{{ comment.createdAt | date: 'yyyy.MM.dd HH:mm' }}</td>
+            <td>{{report.timestamp}}</td>
+            <td *ngIf="i === 0" [attr.rowspan]="comment.reports.length">{{ comment.Comment }}</td>
+            <td>{{ report.reporterName }}</td>
+            <td>{{report.email}}</td>
+            <td *ngIf="i === 0" [attr.rowspan]="comment.reports.length">{{comment.displayName}}</td>
+            <td *ngIf="i === 0" [attr.rowspan]="comment.reports.length">{{ comment.Email }}</td>
+            
             <td>{{report.reportReason}}</td>
             <td>{{report.otherReason}}</td>
-            <td>{{report.commentId}}</td>
         <td>
-          <button class="btn btn-outline-danger" (click)="deleteReport(report.id)">Törlés</button>
-          <button class="btn btn-outline-warning" (click)="deleteComment(comment.id)">Komment Törlés</button>
+          <button class="btn btn-outline-danger" (click)="deleteReport(report.id)">Report Törlése</button>
+          <button class="btn btn-outline-warning" (click)="deleteComment(comment.id)">Komment Törlése</button>
         </td>
           </tr>
         </ng-container>

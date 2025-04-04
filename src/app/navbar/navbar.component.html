@@ -34,7 +34,7 @@
         <a class="dropdown-item" routerLink="/login">🔑 Bejelentkezés</a>
       </div>
     </div>
-    <div class="admin nav-item">
+    <div *ngIf="admin" class="admin nav-item">
       <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
     </div>
     <div class="d-flex align-items-center">

@@ -140,8 +140,8 @@ export class CommentsComponent implements OnInit {
       email: this.user?.email,
       reporterName: this.user?.displayName || this.user?.email,
       reportReason: this.currentReportReason,
-      otherReason: this.currentOtherReason,
-      timestamp: Date.now(),
+      otherReason: this.currentOtherReason || 'Nincs',
+      timestamp:  new Date().toISOString(),
     };
 
     this.commentService.addData('reports', report).then(() => {
