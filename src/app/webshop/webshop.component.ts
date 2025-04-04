@@ -22,7 +22,8 @@ interface ShopData {
   standalone: false
 })
 export class WebshopComponent implements OnInit {
-  shopDatas: ShopData[] = [];
+  shopDatas: any[] = [];
+  datas:any[] = []
   filteredShopDatas: ShopData[] = [];
   maxPrice: number = 200000;
   filterPriceValue: number | null = null;
@@ -52,8 +53,8 @@ export class WebshopComponent implements OnInit {
   }
 
   loadShopData() {
-    this.webservice.getAllItems().subscribe((res) => {
-      this.shopDatas = Object.values(res);
+    this.webservice.getAllItems().subscribe((res:any) => {
+      this.shopDatas = Object.values(res).filter((data:any)=> data != null);
       this.filteredShopDatas = [...this.shopDatas];
     });
   }

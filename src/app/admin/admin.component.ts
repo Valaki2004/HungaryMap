@@ -97,10 +97,10 @@ export class AdminComponent implements OnInit {
     });
   }
 loadItems(): void {
-  this.web.getAllItems().subscribe({
-    next: (res) => this.Items = Array.isArray(res) ? res : Object.values(res),
-    error: (err) => console.error('Hiba a tételek betöltésekor:', err)
-  });
+  this.web.getAllItems().subscribe((res:any)=>{
+    this.Items = (res || []).filter((item:any)=>item != null)
+  })
+  ;
 }
 async addNewItem(): Promise<void> {
   if(
