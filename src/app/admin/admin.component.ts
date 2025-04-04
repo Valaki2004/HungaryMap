@@ -17,7 +17,7 @@ export class AdminComponent implements OnInit {
   reportedComments:any
   Items:any[]=[]
   req:any[]=[]
-  Item = {
+  Item:any = {
     alt:'',
     ar:null,
     id:null, 
@@ -132,10 +132,7 @@ async addNewItem(): Promise<void> {
 filterText(event: KeyboardEvent): void {
   const input = event.target as HTMLInputElement;
   input.value = input.value.replace(/[^a-zA-ZáéíóöőúüűÁÉÍÓÖŐÚÜŰ\s]/g, '');
-  this.Item.alt = input.value;
-  this.Item.nev = input.value;
-  this.Item.path = input.value;
-  this.Item.tipus = input.value;
+
 }
   updateItem(item: any): void {
     this.web.updateItem(item.id, item).subscribe({
