@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="language-selector">
+    <button (click)="changeLanguage('hu')">Magyar</button>
+    <button (click)="changeLanguage('en')">English</button>
+  </div>
+
+  <h2>{{ 'LOGIN.TITLE' | translate }}</h2>
+  <div class="Providers">
+    <a (click)="registerWithGoogle()"  [ngStyle]="{'cursor': cursorStyle}">
+      <img class="kep" src="Google.jpg" alt="Google Login">
+    </a>
+    <a (click)="registerWithFacebook()"  [ngStyle]="{'cursor': cursorStyle}">
+      <img class="Facebook" src="Facebook.png" alt="Facebook Login">
+    </a>
+    <a (click)="registerWithGithub()"  [ngStyle]="{'cursor': cursorStyle}">        
+      <img class="kep" src="GitHub.png" alt="Github Login">
+    </a>
+
+  </div>
+  <p class="szoveg">vagy jelentkezz be: </p>
+  
+  <form (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="username">{{ 'LOGIN.EMAIL' | translate }}</label>
+      <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" id="username" type="text" class="form-control" placeholder="{{ 'LOGIN.EMAIL_PLACEHOLDER' | translate }}">
+    </div>
+
+    <div class="form-group">
+      <label for="password">{{ 'LOGIN.PASSWORD' | translate }}</label>
+      <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password" id="password" class="form-control" placeholder="{{ 'LOGIN.PASSWORD_PLACEHOLDER' | translate }}">
+    </div>
+
+    <div class="form-group">
+      <a routerLink="/register" class="already-have-account">{{ 'LOGIN.REGISTER' | translate }}</a>
+    </div>
+
+    <div class="form-group">
+      <a routerLink="/forgot-password" class="forgot-password">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</a>
+    </div>
+
+    <button type="submit" class="btn loginbutton">{{ 'LOGIN.SUBMIT' | translate }}</button>
+  </form>
+
+  <p *ngIf="loginError" class="text-danger">{{ loginError }}</p>
+</div>

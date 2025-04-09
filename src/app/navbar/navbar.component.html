@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav me-auto gap-3">
+      <li class="nav-item dropdown" [ngClass]="{ 'show': isWebshopDropdownOpen }" (mouseenter)="toggleWebshopDropdown(true)" (mouseleave)="toggleWebshopDropdown(false)">
+        <a class="nav-link dropdown-toggle text-white fw-bold fs-5" id="navbarDropdown" role="button" aria-haspopup="true" [attr.aria-expanded]="isWebshopDropdownOpen" routerLink="/shop">
+          Webshop
+        </a>
+        <div class="dropdown-menu border-0 shadow-lg rounded-3 p-3" aria-labelledby="navbarDropdown" [ngClass]="{ 'show': isWebshopDropdownOpen }">
+          <a class="dropdown-item" routerLink="/shop">🏪 Webshop Főoldal</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="/taskak">🎒 Táskák</a>
+          <a class="dropdown-item" routerLink="/satrak">⛺ Sátrak</a>
+          <a class="dropdown-item" routerLink="/biciklik">🚴 Biciklik</a>
+          <a class="dropdown-item" routerLink="/cipok">👟 Cipők</a>
+          <a class="dropdown-item" routerLink="/halozsakok">🛌 Hálózsákok</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/comments" routerLinkActive="active">Fórum</a>
+      </li>
+      <li class="nav-item mx-auto">
+        <a class="nav-link" routerLink="/map" routerLinkActive="active">Magyarország Térképe</a>
+      </li>
+    </ul>
+    <div *ngIf="!user" class="nav-item dropdown" [ngClass]="{ 'show': isUserMenuDropdownOpen }" (mouseenter)="toggleUserMenuDropdown(true)" (mouseleave)="toggleUserMenuDropdown(false)">
+      <a class="nav-link dropdown-toggle text-white fw-bold fs-5" id="navbarDropdown" role="button" aria-haspopup="true" [attr.aria-expanded]="isWebshopDropdownOpen" routerLink="/login">
+        Felhasználói Menü
+      </a>
+      <div class="dropdown-menu border-0 shadow-lg rounded-3 p-3" aria-labelledby="navbarDropdown" [ngClass]="{ 'show': isUserMenuDropdownOpen }">
+        <a class="dropdown-item" routerLink="/register">📝 Regisztráció</a>
+        <a class="dropdown-item" routerLink="/login">🔑 Bejelentkezés</a>
+      </div>
+    </div>
+    <div *ngIf="admin" class="admin nav-item">
+      <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+    </div>
+    <div class="d-flex align-items-center">
+      <a *ngIf="user" class="nav-link active user me-3" routerLink="/profile">
+        <i class="bi bi-person-circle"></i> Profil
+      </a>
+      <div class="logout">
+        <button *ngIf="user" class="btn btn-sm px-3 btn-danger" (click)="logout()">Kijelentkezés</button>
+      </div>
+    </div>
+  </div>
+</nav>

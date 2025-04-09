@@ -1,0 +1,180 @@
+<!-- Felhasználói lista -->
+<div *ngFor="let user of users" class="row my-3 align-items-center">
+  <div class="col-12 col-md-3">
+    <img *ngIf="user.photoURL" [src]="user.photoURL" class="img-fluid rounded-circle" alt="User photo" referrerpolicy="no-referrer">
+  </div>
+  <div class="col-12 col-md-3">{{ user.displayName }}</div>
+  <div class="col-12 col-md-3">{{ user.email }}</div>
+  <div class="col-12 col-md-3">
+    <hr>
+    <div class="row">
+      <div class="col">
+        <div class="form-check form-switch">
+          <input (change)="change(user.uid)" [(ngModel)]="user.claims.moderator" class="form-check-input" type="checkbox" id="moderator">
+          <label class="form-check-label" for="moderator">Moderator</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-check form-switch">
+          <input (change)="change(user.uid)" [(ngModel)]="user.claims.admin" class="form-check-input" type="checkbox" id="admin">
+          <label class="form-check-label" for="admin">Admin</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Új Termék Hozzáadása -->
+<div class="add-input-group center-container">
+  <p><strong>Új Termék Hozzáadása:</strong></p>
+  <div class="form-group">
+    <input type="text" (keyup)="filterText($event)" class="form-control form-input" placeholder="Az új eszköz neve" [(ngModel)]="Item.nev">
+  </div>
+  <div class="form-group">
+    <input type="number" class="form-control form-input" placeholder="Az új eszköz ára" [(ngModel)]="Item.ar">
+  </div>
+  <div class="form-group">
+    <input type="text" (keyup)="filterText($event)" class="form-control form-input" placeholder="Az új eszköz tipusa" [(ngModel)]="Item.tipus">
+  </div>
+  <div class="form-group">
+    <input type="text" (keyup)="filterText($event)" class="form-control form-input" placeholder="Az új eszköz képének URL-je" [(ngModel)]="Item.path">
+  </div>
+  <div class="form-group">
+    <input type="text" (keyup)="filterText($event)" class="form-control form-input" placeholder="Az új eszköz képéhez valami leírás" [(ngModel)]="Item.alt">
+  </div>
+  <div class="add-new-item-div"><button class="btn btn-success w-100 " (click)="addNewItem()">Eszköz Hozzáadása</button></div>
+</div>
+
+<table class="table table-bordered table-striped mt-3">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Dátum</th>
+      <th>Email</th>
+      <th>Kép</th>
+      <th>Típus</th>
+      <th>Kép leírása</th>
+      <th>Név</th>
+      <th>Ára</th>
+      <th>Műveletek</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of Items">
+      <td><input class="form-control" [(ngModel)]="data.id"></td>
+      <td><input class="form-control" [(ngModel)]="data.createdAt"></td>
+      <td><input class="form-control" [(ngModel)]="data.email"></td>
+      <td><input class="form-control" [(ngModel)]="data.path"></td>
+      <td><input class="form-control" [(ngModel)]="data.tipus"></td>
+      <td><input class="form-control" [(ngModel)]="data.alt"></td>
+      <td><input class="form-control" [(ngModel)]="data.nev"></td>
+      <td><input class="form-control" [(ngModel)]="data.ar"></td>
+      <td>
+        <button class="btn" (click)="updateItem(data)">Frissítés</button>
+        <button class="btn" (click)="deleteItem(data.id)">Törlés</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Kérések táblázata -->
+<table class="table table-bordered table-striped mt-3">
+  <thead>
+    <tr>
+      <th>Dátum</th>
+      <th>Email</th>
+      <th>Helység</th>
+      <th>Keleti Hosszúság</th>
+      <th>Keleti Hosszúság fok/perc</th>
+      <th>Északi Szélesség</th>
+      <th>Északi Szélesség fok/perc</th>
+      <th>Műveletek</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of req">
+      <td><input class="form-control" [(ngModel)]="data.createdAt"></td>
+      <td><input class="form-control" [(ngModel)]="data.email"></td>
+      <td><input class="form-control" [(ngModel)]="data.Helysegnev"></td>
+      <td><input class="form-control" [(ngModel)]="data.KH"></td>
+      <td><input class="form-control" [(ngModel)]="data.keleti_hossz_fok_perc"></td>
+      <td><input class="form-control" [(ngModel)]="data.ESZ"></td>
+      <td><input class="form-control" [(ngModel)]="data.eszaki_szelesseg_fok_perc"></td>
+      <td>
+        <button class="btn" (click)="transferSettlement()">Engedélyezés</button>
+        <button class="btn" (click)="RejectSettlement(data.id)">Visszautasítás</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- Jelentett Kommentek -->
+<div class="report-list mt-3">
+  <h2>Jelentett kommentek</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Komment létrehozásának dátuma</th>
+        <th>Report létrehozásának dátuma</th>
+        <th>Komment</th>
+        <th>Jelentő neve</th>
+        <th>Jelentő emailja</th>
+        
+        <th>Jelentett neve</th>
+        <th>Jelentett emailja</th>
+        <th>Jelentés oka</th>
+        <th>Jelentés egyéb okból</th>
+        <th>Műveletek</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let comment of comments">
+        <ng-container *ngFor="let report of comment.reports;">
+          <tr>
+            <td>{{ comment.createdAt | date: 'yyyy.MM.dd HH:mm' }}</td>
+            <td>{{ report.timestamp | date: 'yyyy.MM.dd HH:mm' }}</td>
+            <td>{{ comment.Comment }}</td>
+            <td>{{ report.reporterName }}</td>
+            <td>{{ report.email }}</td>
+            <td>{{ comment.displayName }}</td>
+            <td>{{ comment.Email }}</td>
+            <td>{{ report.reportReason }}</td>
+            <td>{{ report.otherReason }}</td>
+            <td>
+              <button class="btn" (click)="deleteComment(comment.id)">Komment Törlése</button>
+              <button class="btn" (click)="deleteReport(comment,report.id)">Report Törlése</button>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+ 
+  <!-- <div>
+    <div *ngFor="let comment of comments" class="comment-container">
+      <h3>{{ comment.displayName }} - {{ comment.Email }}</h3>
+      <p><strong>Hozzászólás:</strong> {{ comment.Comment }}</p>
+      <small><i>Helység: {{ comment.Helysegnev }}</i></small>
+      <p><i>Létrehozva: {{ comment.createdAt | date:'medium' }}</i></p>
+  
+      <div *ngIf="comment.reports.length > 0">
+        <h4>Riportok:</h4>
+        <ul>
+          <li *ngFor="let report of comment.reports">
+            <p><strong>Riportált ok:</strong> {{ report.reportReason }}</p>
+            <p><strong>Riportáló:</strong> {{ report.reporterName }} ({{ report.email }})</p>
+            <p><strong>Riport időpontja:</strong> {{ report.timestamp | date:'medium' }}</p>
+            <p><i>Eredeti komment:</i> "{{ report.commentText }}"</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div> -->
+
