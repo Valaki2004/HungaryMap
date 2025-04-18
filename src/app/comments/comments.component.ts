@@ -58,12 +58,20 @@ export class CommentsComponent implements OnInit {
   }
 
   postComment(): void {
+    if (!this.commentData.Comment || this.commentData.Comment.trim() === '') {
+      console.error();
+      ('A hozzászólás nem lehet üres!');
+      return;
+    }
+  
     const newComment = {
       ...this.commentData,
       createdAt: new Date().toISOString(),
     };
+  
     this.commentService.createComment(newComment).subscribe(() => {
       this.loadComments();
+      this.commentData.Comment = '';
     });
   }
 

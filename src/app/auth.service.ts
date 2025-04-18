@@ -5,8 +5,6 @@ import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ProfileComponent } from './profile/profile.component';
-import { ProfileService } from './profile.service';
 
 @Injectable({
   providedIn: 'root'

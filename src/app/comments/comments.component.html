@@ -6,7 +6,8 @@
       <p><strong>{{ comment.displayName }}</strong> - {{ comment.Helysegnev }}</p>
       <p>{{ comment.Comment }}</p>
       <p><small class="text-muted">Kommentelve: {{ comment.createdAt | date: 'yyyy-MM-dd HH:mm:ss' }}</small></p>
-      <button *ngIf="moderator || admin" class="delete" (click)="deleteComment(comment.id)">Komment törlése</button>
+      <button *ngIf="moderator || admin" class="delete btn-sm mt-2" (click)="deleteComment(comment.id)">Komment törlése</button>
+      <button *ngIf="user && user.email === comment.Email" class="btn btn-sm mt-2 delete" (click)="deleteComment(comment.id)">Törlés</button>
       <button *ngIf="user" class="report-btn" (click)="reportComment(comment)">Report</button>
       <button *ngIf="user" class="reply-btn" (click)="toggleReply(comment.id)">Válasz</button>
       
