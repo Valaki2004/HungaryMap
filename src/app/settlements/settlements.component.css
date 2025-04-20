@@ -1,9 +1,10 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f2f5;
-  margin: 20px;
+  background-image:url(/origin.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .button-link {
+ 
   background-color: #28a745;
   padding: 10px 20px;
   border-radius: 5px;
@@ -180,16 +181,10 @@ th {
   margin-bottom: 10px;
 }
 
-body {
-  background-color: #f3f6ed;
-  font-family: 'Poppins', sans-serif;
-}
 
 .container {
-  background: #ffffff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -210,17 +205,48 @@ body {
 }
 
 .table {
-  border: 2px solid #8d6e63;
-  background-color: #fff8e1;
+  border: 2px solid transparent;
+  background-color: transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .table th {
-  background-color: #a1887f;
-  color: white;
+  background-color: transparent;
+  color: black;
+}
+.table tr{
+  background-color: transparent;
 }
 
 .table td {
-  background-color: #d7ccc8;
+  background-color: transparent;
+}
+.data{
+  background-color: transparent;
+  border-color: transparent;
+  font-size: 17px
+}
+.atmenet tbody tr:nth-child(even) {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.atmenet tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+tr:nth-child(odd) input.form-control.data {
+  color: black;
+}
+tr:nth-child(even) input.form-control.data {
+  color: white;
+}
+.pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  margin:auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
 }
 .modal-content {
   background: #e8f5e9;

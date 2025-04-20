@@ -34,7 +34,7 @@ export class SettlementsComponent implements OnInit {
     szeletseg: null  
   };
   currentPage: number = 1;
-  itemsPerPage: number = 50;
+  itemsPerPage: number = 15;
   totalPages: number = 0;
   word: string = '';
   isVisible: boolean = false;
