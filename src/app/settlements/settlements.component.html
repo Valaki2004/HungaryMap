@@ -7,8 +7,8 @@
         <button type="button" class="btn btn-success fixed-button" (click)="BackBtn()">Vissza a térképre</button>
       </div>
   
-      <table class="table table-bordered table-striped atmenet">
-        <thead>
+      <table class="table table-bordered table-striped atmenet rounded-table">
+        <thead class="head">
           <tr>
             <th>Helységnév</th>
             <th>Keleti Hosszúság</th>
@@ -16,32 +16,33 @@
             <th>Északi szélesség</th>
             <th>Északi szélesség fok, perc</th>
             <th *ngIf="user">Keresés
-              <input class="form-control mr-sm-2 kereses" type="search" placeholder="Keresés" aria-label="search" (keyup)="onKeyUp($event)">
+              <input class="form-control mr-sm-2 kereses rounded-input" type="search" placeholder="Keresés" aria-label="search" (keyup)="onKeyUp($event)">
             </th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of paginatedDatas | search: word">
-            <td><input class="form-control data" [(ngModel)]="data.Helysegnev"></td>
-            <td><input class="form-control data" [(ngModel)]="data.KH"></td>
-            <td><input class="form-control data" [(ngModel)]="data.keleti_hossz_fok_perc"></td>
-            <td><input class="form-control data" [(ngModel)]="data.ESZ"></td>
-            <td><input class="form-control data" [(ngModel)]="data.eszaki_szelesseg_fok_perc"></td>
+            <td><input class="form-control data rounded-input" [(ngModel)]="data.Helysegnev"></td>
+            <td><input class="form-control data rounded-input" [(ngModel)]="data.KH"></td>
+            <td><input class="form-control data rounded-input" [(ngModel)]="data.keleti_hossz_fok_perc"></td>
+            <td><input class="form-control data rounded-input" [(ngModel)]="data.ESZ"></td>
+            <td><input class="form-control data rounded-input" [(ngModel)]="data.eszaki_szelesseg_fok_perc"></td>
             <td *ngIf="user">
-              <button class="btn btn-outline-warning btn-sm" *ngIf="moderator || admin" (click)="updateSettlement(data)">Frissítés</button>
-              <button class="btn btn-outline-danger btn-sm" *ngIf="moderator || admin" (click)="deleteSettlement(data.id)">Törlés</button>
-              <button class="btn btn-outline-primary btn-sm" *ngIf="user"
+              <button class="btn btn-outline-warning btn-sm rounded-button" *ngIf="moderator || admin" (click)="updateSettlement(data)">Frissítés</button>
+              <button class="btn btn-outline-danger btn-sm rounded-button" *ngIf="moderator || admin" (click)="deleteSettlement(data.id)">Törlés</button>
+              <button class="btn btn-outline-primary btn-sm rounded-button" *ngIf="user"
                       [routerLink]="['/comments', data.Helysegnev]"
                       [routerLinkActive]="['active']"
                       [queryParams]="{ email: user?.email }">
                       Kommentelés </button>
-              <button *ngIf="user"class="button-link"  >
-                <a class="link" href="https://www.booking.com/searchresults.hu.html?ss={{ data.Helysegnev }}" target="cityWindow">Szállás foglalása</a>
+              <button *ngIf="user" class="button-link">
+                <a class="link btn btn-light" href="https://www.booking.com/searchresults.hu.html?ss={{ data.Helysegnev }}" target="cityWindow">Szállás foglalása</a>
               </button>
-              </td>
+            </td>
           </tr>
         </tbody>
       </table>
+      
   </div>
   <div class="d-flex justify-content-between align-items-center mt-3 pages">
     <button class="btn btn-secondary" (click)="prevPage()" [disabled]="currentPage === 1">Előző</button>

@@ -1,14 +1,13 @@
 body {
-  background-image:url(/origin.jpg);
+  margin: 0;
+  background-image: url(/origin.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
 .button-link {
- 
   background-color: #28a745;
-  padding: 10px 20px;
-  border-radius: 5px;
-  display: inline-block;
+  border-radius: 15px;
+  border-style: none;
 }
 
 .button-link:hover {
@@ -16,7 +15,6 @@ body {
 }
 .link{
   color: white;
-  text-decoration: none;
 }
 
 div {
@@ -110,13 +108,15 @@ button.btn {
 }
 
 .btn-outline-primary {
+  padding: 20px;
+  width: 160px;
+  height: 45px;
   background-color: #007bff;
-  color: #000000;
+  color: #ffffff;
 }
 
 .btn-outline-primary:hover {
   background-color: #0069d9;
-  color: white;
 }
 
 table {
@@ -203,16 +203,11 @@ th {
 .btn-success:hover {
   background-color: #1b5e20;
 }
-
 .table {
   border: 2px solid transparent;
+  border-radius: 20px;
   background-color: transparent;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-}
-
-.table th {
-  background-color: transparent;
-  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);  
 }
 .table tr{
   background-color: transparent;
@@ -224,7 +219,16 @@ th {
 .data{
   background-color: transparent;
   border-color: transparent;
-  font-size: 17px
+  font-size: 17px;
+}
+.rounded-table {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rounded-input {
+  border-radius: 10px;
 }
 .atmenet tbody tr:nth-child(even) {
   color: white;
@@ -238,6 +242,19 @@ tr:nth-child(odd) input.form-control.data {
 }
 tr:nth-child(even) input.form-control.data {
   color: white;
+}
+ table th{
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+@media (max-width: 375px) {
+  body {
+    background-size: cover;
+    background-position: center;
+  }
+  table{
+    width: 375px;
+  }
 }
 .pages {
   display: flex;
